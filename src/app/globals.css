@@ -1,26 +1,540 @@
-@import "tailwindcss";
+/* ============================================================
+   Serge Muhizi — Product Design Portfolio
+   Design system: true monochrome (midnight gray family)
+   Type: Space Grotesk (display) / IBM Plex Sans (body) / IBM Plex Mono (utility)
+   Signature: the "signal line" — a live-readout ticker of the domains
+   he designs for, echoing the dashboards/monitoring throughline in
+   his own work.
+   ============================================================ */
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* color — one gray family, nothing else */
+  --midnight: #101115;
+  --charcoal: #1a1c21;
+  --panel: #212328;
+  --line: #33363d;
+  --slate: #55585f;
+  --ash: #83868d;
+  --mist: #b3b5ba;
+  --fog: #e7e7e8;
+  --paper: #f4f4f3;
+
+  /* type */
+  --display: var(--font-display), sans-serif;
+  --body: var(--font-body), sans-serif;
+  --mono: var(--font-mono), monospace;
+
+  /* layout */
+  --max: 1120px;
+  --gutter: clamp(20px, 5vw, 64px);
+  --radius: 2px;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+* {
+  box-sizing: border-box;
 }
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+html {
+  scroll-behavior: smooth;
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
   }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  background: var(--midnight);
+  color: var(--fog);
+  font-family: var(--body);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+}
+img {
+  max-width: 100%;
+  display: block;
+}
+::selection {
+  background: var(--fog);
+  color: var(--midnight);
+}
+
+:focus-visible {
+  outline: 2px solid var(--fog);
+  outline-offset: 3px;
+}
+
+.wrap {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+.eyebrow {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ash);
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--display);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin: 0;
+  color: var(--paper);
+}
+
+p {
+  color: var(--mist);
+  margin: 0;
+}
+
+/* ---------- nav ---------- */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: rgba(16, 17, 21, 0.86);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--line);
+}
+.nav .wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 68px;
+}
+.nav-name {
+  font-family: var(--mono);
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--fog);
+  text-decoration: none;
+}
+.nav-links {
+  display: flex;
+  gap: 28px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-family: var(--mono);
+  font-size: 13px;
+  letter-spacing: 0.04em;
+}
+.nav-links a {
+  text-decoration: none;
+  color: var(--ash);
+  transition: color 0.2s ease;
+  padding: 4px 0;
+  border-bottom: 1px solid transparent;
+}
+.nav-links a:hover,
+.nav-links a[aria-current="page"] {
+  color: var(--fog);
+  border-bottom-color: var(--slate);
+}
+
+/* ---------- signal line (signature element) ---------- */
+.signal {
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  overflow: hidden;
+  background: var(--charcoal);
+}
+.signal-track {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  padding: 10px var(--gutter);
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ash);
+  white-space: nowrap;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.signal-track::-webkit-scrollbar {
+  display: none;
+}
+.signal-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--mist);
+  display: inline-block;
+  margin-right: 8px;
+  animation: pulse 2.6s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+.signal-item {
+  color: var(--mist);
+}
+.signal-sep {
+  color: var(--slate);
+}
+
+/* ---------- hero ---------- */
+.hero {
+  padding: clamp(64px, 12vh, 128px) 0 clamp(48px, 8vh, 88px);
+}
+.hero h1 {
+  font-size: clamp(38px, 6vw, 68px);
+  line-height: 1.05;
+  max-width: 15ch;
+}
+.hero .lede {
+  margin-top: 24px;
+  max-width: 56ch;
+  font-size: 18px;
+  line-height: 1.7;
+}
+.hero-meta {
+  margin-top: 40px;
+  display: flex;
+  gap: 32px;
+  flex-wrap: wrap;
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--ash);
+}
+.hero-meta strong {
+  color: var(--fog);
+  font-weight: 500;
+}
+
+/* ---------- section rhythm ---------- */
+.section {
+  padding: clamp(56px, 9vh, 96px) 0;
+  border-top: 1px solid var(--line);
+}
+.section-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 44px;
+  flex-wrap: wrap;
+}
+.section-head h2 {
+  font-size: clamp(24px, 3vw, 32px);
+}
+.section-note {
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--ash);
+  max-width: 34ch;
+  text-align: right;
+}
+
+/* ---------- project grid ---------- */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+}
+@media (max-width: 720px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+.card {
+  background: var(--midnight);
+  padding: 36px;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  transition: background 0.25s ease;
+  min-height: 220px;
+}
+.card:hover {
+  background: var(--charcoal);
+}
+.card-domain {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ash);
+}
+.card h3 {
+  font-size: 22px;
+  margin-bottom: 2px;
+}
+.card p {
+  font-size: 15px;
+}
+.card-foot {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--mist);
+}
+.card-foot .arrow {
+  transition: transform 0.2s ease;
+}
+.card:hover .card-foot .arrow {
+  transform: translateX(4px);
+}
+
+/* ---------- divider list (strengths / about) ---------- */
+.divider-list {
+  border-top: 1px solid var(--line);
+}
+.divider-row {
+  border-bottom: 1px solid var(--line);
+  padding: 22px 0;
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 24px;
+}
+@media (max-width: 640px) {
+  .divider-row {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+}
+.divider-row .label {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ash);
+}
+.divider-row p {
+  color: var(--fog);
+  font-size: 16px;
+}
+
+/* ---------- about copy ---------- */
+.about-copy p + p {
+  margin-top: 18px;
+}
+.about-copy {
+  max-width: 68ch;
+  font-size: 16px;
+}
+
+/* ---------- footer ---------- */
+.footer {
+  border-top: 1px solid var(--line);
+  padding: 48px 0 64px;
+}
+.footer .wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+.footer h2 {
+  font-size: clamp(26px, 4vw, 40px);
+  max-width: 16ch;
+}
+.footer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-family: var(--mono);
+  font-size: 14px;
+}
+.footer-links a {
+  text-decoration: none;
+  color: var(--mist);
+}
+.footer-links a:hover {
+  color: var(--fog);
+}
+.footer-base {
+  margin-top: 40px;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--slate);
+}
+
+/* ============================================================
+   Case study pages
+   ============================================================ */
+.cs-header {
+  padding: 56px 0 40px;
+  border-bottom: 1px solid var(--line);
+}
+.cs-header .eyebrow {
+  margin-bottom: 18px;
+}
+.cs-header h1 {
+  font-size: clamp(32px, 5vw, 52px);
+  max-width: 20ch;
+}
+.cs-header .lede {
+  margin-top: 18px;
+  max-width: 60ch;
+  font-size: 17px;
+}
+
+.cs-meta {
+  margin-top: 36px;
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  gap: 32px;
+  border-top: 1px solid var(--line);
+  padding-top: 24px;
+}
+@media (max-width: 720px) {
+  .cs-meta {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+.cs-meta .label {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ash);
+  margin-bottom: 6px;
+}
+.cs-meta .value {
+  font-size: 14px;
+  color: var(--fog);
+}
+
+.cs-block {
+  padding: 48px 0;
+  border-top: 1px solid var(--line);
+}
+.cs-block h2 {
+  font-family: var(--mono);
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ash);
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+.cs-block .body {
+  max-width: 68ch;
+  font-size: 16px;
+  color: var(--fog);
+}
+.cs-block .body p + p {
+  margin-top: 16px;
+}
+.cs-block .body strong {
+  color: var(--paper);
+}
+.cs-block .body .cs-link {
+  color: var(--fog);
+}
+.cs-block ul {
+  max-width: 68ch;
+  padding-left: 20px;
+  margin: 0;
+  color: var(--fog);
+}
+.cs-block li {
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+.cs-block li::marker {
+  color: var(--ash);
+}
+
+.shot {
+  border: 1px dashed var(--line);
+  background: var(--charcoal);
+  padding: 48px 24px;
+  text-align: center;
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--slate);
+  border-radius: var(--radius);
+}
+.shot-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 8px;
+}
+@media (max-width: 640px) {
+  .shot-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.cs-nextprev {
+  display: flex;
+  justify-content: space-between;
+  padding: 40px 0;
+  border-top: 1px solid var(--line);
+  font-family: var(--mono);
+  font-size: 13px;
+}
+.cs-nextprev a {
+  text-decoration: none;
+  color: var(--mist);
+}
+.cs-nextprev a:hover {
+  color: var(--fog);
+}
+
+/* ---------- error boundary pages ---------- */
+.error-panel {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 32px;
+  text-align: center;
+  background: var(--midnight);
+  color: var(--fog);
+}
+.error-panel p {
+  color: var(--ash);
+  font-size: 14px;
+}
+.error-panel button {
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--fog);
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+}
+.error-panel button:hover {
+  border-color: var(--slate);
 }
