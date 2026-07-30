@@ -7,7 +7,10 @@
    his own work.
    ============================================================ */
 
-:root {
+:root,
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
   /* color — one gray family, nothing else */
   --midnight: #101115;
   --charcoal: #1a1c21;
@@ -18,6 +21,7 @@
   --mist: #b3b5ba;
   --fog: #e7e7e8;
   --paper: #f4f4f3;
+  --nav-bg: rgba(16, 17, 21, 0.86);
 
   /* type */
   --display: var(--font-display), sans-serif;
@@ -28,6 +32,22 @@
   --max: 1120px;
   --gutter: clamp(20px, 5vw, 64px);
   --radius: 2px;
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+
+  /* same gray family, inverted */
+  --midnight: #f7f7f5;
+  --charcoal: #ececea;
+  --panel: #e3e3e0;
+  --line: #d3d3cf;
+  --slate: #9a9c9f;
+  --ash: #74767b;
+  --mist: #4a4c51;
+  --fog: #1c1d20;
+  --paper: #101115;
+  --nav-bg: rgba(247, 247, 245, 0.86);
 }
 
 * {
@@ -55,6 +75,7 @@ body {
   font-size: 16px;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 a {
@@ -108,8 +129,9 @@ p {
   position: sticky;
   top: 0;
   z-index: 20;
-  background: rgba(16, 17, 21, 0.86);
+  background: var(--nav-bg);
   backdrop-filter: blur(8px);
+  transition: background-color 0.2s ease, border-color 0.2s ease;
   border-bottom: 1px solid var(--line);
 }
 .nav .wrap {
@@ -125,6 +147,11 @@ p {
   text-transform: uppercase;
   color: var(--fog);
   text-decoration: none;
+}
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 32px;
 }
 .nav-links {
   display: flex;
@@ -147,6 +174,99 @@ p {
 .nav-links a[aria-current="page"] {
   color: var(--fog);
   border-bottom-color: var(--slate);
+}
+@media (max-width: 560px) {
+  .nav-right {
+    gap: 16px;
+  }
+  .nav-links {
+    gap: 16px;
+  }
+  .theme-menu-trigger span:not(.theme-menu-dot) {
+    display: none;
+  }
+  .theme-menu-trigger {
+    padding: 6px 10px;
+  }
+}
+
+/* ---------- theme menu ---------- */
+.theme-menu {
+  position: relative;
+}
+.theme-menu-trigger {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ash);
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 6px 14px;
+  cursor: pointer;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+.theme-menu-trigger:hover,
+.theme-menu-trigger[aria-expanded="true"] {
+  color: var(--fog);
+  border-color: var(--slate);
+}
+.theme-menu-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--mist);
+  display: inline-block;
+}
+.theme-menu-list {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  z-index: 30;
+  list-style: none;
+  margin: 0;
+  padding: 6px;
+  min-width: 128px;
+  background: var(--charcoal);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.28);
+}
+.theme-menu-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--mist);
+  background: transparent;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 10px;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+.theme-menu-item:hover {
+  background: var(--panel);
+  color: var(--fog);
+}
+.theme-menu-item[aria-checked="true"] {
+  color: var(--fog);
+}
+.theme-menu-item[aria-checked="true"]::after {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--fog);
 }
 
 /* ---------- signal line (signature element) ---------- */
