@@ -1,0 +1,12 @@
+{
+  "portVars": [
+    "PORT"
+  ],
+  "worktreeInclude": [
+    ".env",
+    ".env.local"
+  ],
+  "scripts": {
+    "setup": "npm install"
+  }
+}
