@@ -6,18 +6,19 @@ export interface Run {
 
 export type Paragraph = Run[];
 
-export interface GalleryImage {
+export interface MasonryImage {
   src: string;
   width: number;
   height: number;
-  alt: string;
+  title: string;
+  description: string;
 }
 
 export type Block =
   | { kind: "prose"; heading: string; paragraphs: Paragraph[] }
   | { kind: "list"; heading: string; items: string[] }
   | { kind: "visuals"; heading: string; items: string[] }
-  | { kind: "gallery"; heading: string; primary: GalleryImage; carousel?: GalleryImage[] };
+  | { kind: "masonry"; heading: string; images: MasonryImage[] };
 
 export interface MetaField {
   label: string;
@@ -343,86 +344,79 @@ export const projects: Project[] = [
         ],
       },
       {
-        kind: "gallery",
-        heading: "On-site mobile app",
-        primary: {
-          src: "/work/fixa/app-home.png",
-          width: 1290,
-          height: 3555,
-          alt: "Mobile app home for a supervisor managing multiple projects, with attendance-approval notifications and worker search",
-        },
-        carousel: [
+        kind: "masonry",
+        heading: "Visuals",
+        images: [
+          {
+            src: "/work/fixa/app-home.png",
+            width: 1290,
+            height: 3555,
+            title: "Mobile app — Home",
+            description:
+              "Supervisor view across multiple active projects, with attendance-approval notifications and worker search.",
+          },
           {
             src: "/work/fixa/app-home-single-project.png",
             width: 1290,
             height: 2700,
-            alt: "Mobile app home for a single-project user, showing an attendance-updates feed with approval status",
+            title: "Mobile app — Single project",
+            description: "Home screen for a user assigned to one project, showing an attendance-updates feed.",
           },
           {
             src: "/work/fixa/app-attendance.png",
             width: 1290,
             height: 2700,
-            alt: "Marking attendance on-site by shift and trade, with a running headcount",
+            title: "Mobile app — Attendance",
+            description: "Marking attendance on-site by shift and trade, with a running headcount.",
           },
-        ],
-      },
-      {
-        kind: "gallery",
-        heading: "Admin portal",
-        primary: {
-          src: "/work/fixa/admin-workforce.png",
-          width: 3120,
-          height: 2534,
-          alt: "Workforce directory listing every worker with status, trade, project, and daily earnings",
-        },
-        carousel: [
+          {
+            src: "/work/fixa/admin-workforce.png",
+            width: 3120,
+            height: 2534,
+            title: "Admin portal — Workforce",
+            description: "Directory of every worker with status, trade, project, and daily earnings.",
+          },
           {
             src: "/work/fixa/admin-worker-profile.png",
             width: 3120,
             height: 2064,
-            alt: "Individual worker profile with trades, day rates, ratings, and certificates",
+            title: "Admin portal — Worker profile",
+            description: "Individual worker record with trades, day rates, ratings, and certificates.",
           },
           {
             src: "/work/fixa/admin-worker-scores.png",
             width: 3120,
             height: 1800,
-            alt: "Worker scorecard breaking performance into flexibility, reliability, KYC, technical, and multi-skill scores",
+            title: "Admin portal — Worker scores",
+            description: "Performance scorecard across flexibility, reliability, KYC, technical skill, and multi-skilling.",
           },
-        ],
-      },
-      {
-        kind: "gallery",
-        heading: "Client portal",
-        primary: {
-          src: "/work/fixa/client-attendance.png",
-          width: 3120,
-          height: 2098,
-          alt: "Client-facing portal for reviewing and approving submitted shift attendance by trade",
-        },
-        carousel: [
+          {
+            src: "/work/fixa/client-attendance.png",
+            width: 3120,
+            height: 2098,
+            title: "Client portal — Attendance",
+            description: "Contracting company reviewing and approving submitted shift attendance by trade.",
+          },
           {
             src: "/work/fixa/client-billing.png",
             width: 3120,
             height: 2204,
-            alt: "Client billing view listing invoices, payment status, and linked tax (EBM) certificates",
+            title: "Client portal — Billing",
+            description: "Invoices, payment status, and linked tax (EBM) certificates for the client.",
           },
-        ],
-      },
-      {
-        kind: "gallery",
-        heading: "Automated email reporting",
-        primary: {
-          src: "/work/fixa/email-report.png",
-          width: 3092,
-          height: 4494,
-          alt: "Daily reporting email breaking down active workers, shifts, and USSD usage per project with charts",
-        },
-        carousel: [
+          {
+            src: "/work/fixa/email-report.png",
+            width: 3092,
+            height: 4494,
+            title: "Email reporting — Charts",
+            description: "Automated daily digest with per-project charts on shifts, salaries, and USSD usage.",
+          },
           {
             src: "/work/fixa/email-report-simple.png",
             width: 3092,
             height: 5426,
-            alt: "Plain-text variant of the daily reporting email, sent automatically per active project",
+            title: "Email reporting — Summary",
+            description: "Plain-text variant of the daily digest, sent automatically per active project.",
           },
         ],
       },

@@ -491,92 +491,58 @@ p {
   }
 }
 
-/* ---------- portal image galleries ---------- */
-.gallery {
+/* ---------- portal image masonry grid ---------- */
+.masonry {
+  columns: 2;
+  column-gap: 16px;
   margin-top: 8px;
 }
-.gallery-primary {
+@media (max-width: 480px) {
+  .masonry {
+    columns: 1;
+  }
+}
+.masonry-item {
+  position: relative;
+  break-inside: avoid;
+  margin-bottom: 16px;
   border: 1px solid var(--line);
   background: var(--charcoal);
   overflow: hidden;
 }
-.gallery-primary img {
+.masonry-item img {
   width: 100%;
   height: auto;
   display: block;
 }
-
-.gallery-carousel {
-  margin-top: 16px;
-  border: 1px solid var(--line);
-  background: var(--charcoal);
-}
-.gallery-viewport {
-  aspect-ratio: 16 / 10;
-  overflow: hidden;
-}
-.gallery-track {
+.masonry-caption {
+  position: absolute;
+  inset: 0;
   display: flex;
-  height: 100%;
-  transition: transform 0.6s cubic-bezier(0.65, 0, 0.35, 1);
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 20px;
+  background: linear-gradient(
+    to top,
+    rgba(16, 17, 21, 0.94) 0%,
+    rgba(16, 17, 21, 0.6) 45%,
+    rgba(16, 17, 21, 0) 100%
+  );
+  opacity: 0;
+  transition: opacity 0.25s ease;
 }
-.gallery-slide {
-  flex: 0 0 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 16px;
+.masonry-item:hover .masonry-caption,
+.masonry-item:focus-visible .masonry-caption {
+  opacity: 1;
 }
-.gallery-slide img {
-  max-width: 100%;
-  max-height: 100%;
-  width: auto;
-  height: auto;
-  object-fit: contain;
+.masonry-caption h3 {
+  font-size: 15px;
+  color: var(--paper);
+  margin-bottom: 6px;
 }
-.gallery-controls {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 20px;
-  padding: 14px var(--gutter);
-  border-top: 1px solid var(--line);
-}
-.gallery-dots {
-  display: flex;
-  gap: 8px;
-}
-.gallery-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--slate);
-  border: none;
-  padding: 0;
-  cursor: pointer;
-}
-.gallery-dot.active {
-  background: var(--fog);
-}
-.gallery-arrow {
-  background: transparent;
-  border: 1px solid var(--line);
-  color: var(--fog);
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  cursor: pointer;
-  font-family: var(--mono);
+.masonry-caption p {
   font-size: 13px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: border-color 0.2s ease;
-  flex-shrink: 0;
-}
-.gallery-arrow:hover {
-  border-color: var(--slate);
+  color: var(--mist);
 }
 
 .cs-nextprev {

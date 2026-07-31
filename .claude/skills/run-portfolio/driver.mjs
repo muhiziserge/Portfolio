@@ -6,9 +6,11 @@
 //   nav <url>
 //   wait-for text=<substring> | selector=<css>
 //   click <css selector>
+//   hover <css selector>
 //   fill <css selector> <text...>
 //   press <key>
 //   screenshot [name]
+//   screenshot-element <css selector> [name]
 //   console --errors
 //   quit
 //
@@ -57,6 +59,10 @@ for await (const raw of rl) {
         await page.locator(rest.join(' ')).first().click();
         console.log(`OK click ${rest.join(' ')}`);
         break;
+      case 'hover':
+        await page.locator(rest.join(' ')).first().hover();
+        console.log(`OK hover ${rest.join(' ')}`);
+        break;
       case 'fill': {
         const [selector, ...text] = rest;
         await page.locator(selector).first().fill(text.join(' '));
@@ -72,6 +78,14 @@ for await (const raw of rl) {
         const path = `screenshots/${name}.png`;
         await page.screenshot({ path, fullPage: true });
         console.log(`OK screenshot ${path}`);
+        break;
+      }
+      case 'screenshot-element': {
+        const [selector, ...nameParts] = rest;
+        const name = nameParts.join(' ') || String(shotIndex++);
+        const path = `screenshots/${name}.png`;
+        await page.locator(selector).first().screenshot({ path });
+        console.log(`OK screenshot-element ${path}`);
         break;
       }
       case 'console':

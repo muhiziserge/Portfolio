@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { Nav } from "@/components/nav";
 import { RichParagraph } from "@/components/rich-paragraph";
-import { PortalGallery } from "@/components/portal-gallery";
+import { MasonryGallery } from "@/components/masonry-gallery";
 import { getProject, projects } from "@/lib/projects";
 
 export function generateStaticParams() {
@@ -78,9 +78,7 @@ export default async function CaseStudyPage({
               ))}
             </div>
           )}
-          {block.kind === "gallery" && (
-            <PortalGallery primary={block.primary} carousel={block.carousel} />
-          )}
+          {block.kind === "masonry" && <MasonryGallery images={block.images} />}
         </section>
       ))}
 

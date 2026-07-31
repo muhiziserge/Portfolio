@@ -73,9 +73,11 @@ Driver commands:
 | `wait-for text=<substring>` | wait for visible text |
 | `wait-for selector=<css>` | wait for a CSS selector |
 | `click <css selector>` | click first match |
+| `hover <css selector>` | hover first match — use to check `:hover`-revealed UI (captions, tooltips) |
 | `fill <css selector> <text...>` | fill an input (goes through Playwright's input pipeline, so React controlled inputs fire `onChange` correctly) |
 | `press <key>` | keyboard press, e.g. `Enter` |
 | `screenshot [name]` | full-page PNG to `screenshots/<name or auto-index>.png` |
+| `screenshot-element <css selector> [name]` | PNG of just the first matching element — avoids the full-page lazy-load timing issue below, and is what you want for hover-state checks |
 | `console --errors` | print collected console/page errors as JSON |
 | `quit` | close the browser and exit |
 
@@ -118,3 +120,18 @@ npm run lint   # eslint — verified clean on the current scaffold
   has its own `package.json` with `playwright` as a dependency) — it's
   intentionally not added to the app's own `package.json`, so `npm
   install` at the repo root won't pull Playwright in.
+- **`screenshot` (fullPage) can render below-the-fold images as blank**
+  even when they're correctly wired up — Chromium's full-page capture
+  doesn't reliably wait for lazy-loaded `next/image` content far from
+  the initial viewport to finish decoding before the CDP screenshot
+  fires. This is a capture-timing artifact, not a real bug: confirmed
+  by checking `curl http://localhost:PORT/_next/image?url=...&w=...`
+  resolves with the right byte size/dimensions, and by using
+  `screenshot-element <selector>` (which scrolls the target into view
+  first) instead of a blind full-page `screenshot`.
+- **Turbopack's dev image-optimizer cache lives at
+  `.next/dev/cache/images`**, not `.next/cache/images` (that path is
+  the production/webpack build cache). If you swap a file at the same
+  public/ path and the optimized output still looks stale after a
+  restart, delete `.next/dev/cache/images` (safe — it's a regenerable
+  cache) and restart.
