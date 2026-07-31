@@ -6,7 +6,7 @@ export interface Run {
 
 export type Paragraph = Run[];
 
-export interface MasonryImage {
+export interface QuiltImage {
   src: string;
   width: number;
   height: number;
@@ -18,7 +18,7 @@ export type Block =
   | { kind: "prose"; heading: string; paragraphs: Paragraph[] }
   | { kind: "list"; heading: string; items: string[] }
   | { kind: "visuals"; heading: string; items: string[] }
-  | { kind: "masonry"; heading: string; images: MasonryImage[] };
+  | { kind: "quilt"; heading: string; images: QuiltImage[] };
 
 export interface MetaField {
   label: string;
@@ -344,7 +344,7 @@ export const projects: Project[] = [
         ],
       },
       {
-        kind: "masonry",
+        kind: "quilt",
         heading: "Visuals",
         images: [
           {

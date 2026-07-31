@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { Nav } from "@/components/nav";
 import { RichParagraph } from "@/components/rich-paragraph";
-import { MasonryGallery } from "@/components/masonry-gallery";
+import { QuiltedGrid } from "@/components/quilted-grid";
 import { getProject, projects } from "@/lib/projects";
 
 export function generateStaticParams() {
@@ -78,7 +78,7 @@ export default async function CaseStudyPage({
               ))}
             </div>
           )}
-          {block.kind === "masonry" && <MasonryGallery images={block.images} />}
+          {block.kind === "quilt" && <QuiltedGrid images={block.images} />}
         </section>
       ))}
 

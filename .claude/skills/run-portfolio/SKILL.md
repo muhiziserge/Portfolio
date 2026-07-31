@@ -79,6 +79,8 @@ Driver commands:
 | `screenshot [name]` | full-page PNG to `screenshots/<name or auto-index>.png` |
 | `screenshot-element <css selector> [name]` | PNG of just the first matching element — avoids the full-page lazy-load timing issue below, and is what you want for hover-state checks |
 | `console --errors` | print collected console/page errors as JSON |
+| `viewport <W>x<H>` | resize the page, e.g. `viewport 390x844` for a phone-width check |
+| `eval <js expression>` | run JS in the page, print the JSON-serialized result — use for diagnosing layout (`getBoundingClientRect()`, `getComputedStyle()`) rather than guessing from a screenshot |
 | `quit` | close the browser and exit |
 
 ## Run (human path)
@@ -135,3 +137,19 @@ npm run lint   # eslint — verified clean on the current scaffold
   public/ path and the optimized output still looks stale after a
   restart, delete `.next/dev/cache/images` (safe — it's a regenerable
   cache) and restart.
+- **A CSS Grid item with `grid-column: span 2` on a grid where only one
+  fixed-width column actually fits forces an implicit extra column,
+  auto-sized to whatever space is left over** — this silently distorts
+  every track's width, not just that item's. Confirmed with `eval` by
+  reading `getComputedStyle(grid).gridTemplateColumns` at a narrow
+  `viewport` and seeing an uneven size (e.g. `220px 158px`) instead of
+  a single track. Fix: gate the wider span behind a `@media (min-width:
+  ...)` query sized to when a second full column actually fits — inline
+  styles can't be media-conditioned, so pass both span values in as CSS
+  custom properties and let the stylesheet pick.
+- **CSS Grid's row `gap` compounds across every internal track boundary
+  an item spans**, not just between top-level items. An item spanning
+  N tiny row-tracks renders `N*rowHeight + (N-1)*gap` tall — for a large
+  N (fine-grained row units) the accumulated gap can dwarf the intended
+  height. Any span computed from a target pixel height must solve for N
+  in that formula, not just divide target-height by row-height.

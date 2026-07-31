@@ -91,6 +91,17 @@ for await (const raw of rl) {
       case 'console':
         if (rest.includes('--errors')) console.log(`ERRORS ${JSON.stringify(consoleErrors)}`);
         break;
+      case 'viewport': {
+        const [w, h] = rest.join(' ').split('x').map(Number);
+        await page.setViewportSize({ width: w, height: h });
+        console.log(`OK viewport ${w}x${h}`);
+        break;
+      }
+      case 'eval': {
+        const result = await page.evaluate(rest.join(' '));
+        console.log(`EVAL ${JSON.stringify(result)}`);
+        break;
+      }
       case 'quit':
         await browser.close();
         process.exit(0);

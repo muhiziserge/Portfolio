@@ -491,31 +491,42 @@ p {
   }
 }
 
-/* ---------- portal image masonry grid ---------- */
-.masonry {
-  columns: 2;
-  column-gap: 16px;
+/* ---------- portal image quilted grid ---------- */
+/* Column/row units here (220px, 12px gap, 8px row) are mirrored in
+   quilted-grid.tsx's span calculation — keep both in sync. */
+.quilt {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 220px);
+  grid-auto-rows: 8px;
+  grid-auto-flow: dense;
+  gap: 12px;
   margin-top: 8px;
 }
-@media (max-width: 480px) {
-  .masonry {
-    columns: 1;
-  }
-}
-.masonry-item {
+.quilt-item {
   position: relative;
-  break-inside: avoid;
-  margin-bottom: 16px;
+  grid-column: span 1;
+  grid-row: span var(--row-narrow);
   border: 1px solid var(--line);
   background: var(--charcoal);
   overflow: hidden;
 }
-.masonry-item img {
+/* A "span 2" item forces the grid to grow an implicit extra column when
+   fewer than 2 real columns fit, sized to whatever's left over — so the
+   wide span only applies once the viewport can actually fit two 220px
+   columns (2*220px + 12px gap = 452px content width). */
+@media (min-width: 480px) {
+  .quilt-item.wide {
+    grid-column: span 2;
+    grid-row: span var(--row-wide);
+  }
+}
+.quilt-item img {
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
   display: block;
 }
-.masonry-caption {
+.quilt-caption {
   position: absolute;
   inset: 0;
   display: flex;
@@ -531,16 +542,16 @@ p {
   opacity: 0;
   transition: opacity 0.25s ease;
 }
-.masonry-item:hover .masonry-caption,
-.masonry-item:focus-visible .masonry-caption {
+.quilt-item:hover .quilt-caption,
+.quilt-item:focus-visible .quilt-caption {
   opacity: 1;
 }
-.masonry-caption h3 {
+.quilt-caption h3 {
   font-size: 15px;
   color: var(--paper);
   margin-bottom: 6px;
 }
-.masonry-caption p {
+.quilt-caption p {
   font-size: 13px;
   color: var(--mist);
 }
