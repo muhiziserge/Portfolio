@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { Nav } from "@/components/nav";
 import { RichParagraph } from "@/components/rich-paragraph";
+import { ScrollingShot } from "@/components/scrolling-shot";
 import { QuiltedGrid } from "@/components/quilted-grid";
 import { getProject, projects } from "@/lib/projects";
 
@@ -71,11 +72,18 @@ export default async function CaseStudyPage({
           )}
           {block.kind === "visuals" && (
             <div className="shot-grid">
-              {block.items.map((item) => (
-                <div className="shot" key={item}>
-                  {item}
-                </div>
-              ))}
+              {block.items.map((item) =>
+                typeof item === "string" ? (
+                  <div className="shot" key={item}>
+                    {item}
+                  </div>
+                ) : (
+                  <div key={item.src}>
+                    <ScrollingShot src={item.src} alt={item.alt} />
+                    <p className="shot-caption">{item.alt}</p>
+                  </div>
+                ),
+              )}
             </div>
           )}
           {block.kind === "quilt" && <QuiltedGrid images={block.images} />}

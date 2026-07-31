@@ -6,6 +6,11 @@ export interface Run {
 
 export type Paragraph = Run[];
 
+export interface VisualImage {
+  src: string;
+  alt: string;
+}
+
 export interface QuiltImage {
   src: string;
   width: number;
@@ -17,7 +22,7 @@ export interface QuiltImage {
 export type Block =
   | { kind: "prose"; heading: string; paragraphs: Paragraph[] }
   | { kind: "list"; heading: string; items: string[] }
-  | { kind: "visuals"; heading: string; items: string[] }
+  | { kind: "visuals"; heading: string; items: (string | VisualImage)[] }
   | { kind: "quilt"; heading: string; images: QuiltImage[] };
 
 export interface MetaField {
@@ -44,13 +49,229 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    slug: "innovate-rwanda",
+    domain: "Government · Ecosystem",
+    cardTitle: "Innovate Rwanda",
+    cardDescription:
+      "The national platform connecting startups, talent, investors, and ecosystem enablers.",
+    title: "Innovate Rwanda",
+    eyebrow: "Government · Ecosystem — Techclick",
+    heading: "The national platform connecting Rwanda's startup ecosystem",
+    lede: "Innovate Rwanda links startups, talent, investors, and ecosystem enablers on one platform, with the admin and analytics dashboards that turn that activity into something the ecosystem's stewards can act on.",
+    meta: [
+      { label: "Role", value: "Product Lead (Contract)" },
+      { label: "Company", value: "Techclick" },
+      { label: "Timeline", value: "Jun 2024 – Dec 2024" },
+      { label: "Live at", value: "innovaterwanda.rw" },
+    ],
+    blocks: [
+      {
+        kind: "prose",
+        heading: "Context",
+        paragraphs: [
+          [
+            {
+              text: "Innovate Rwanda is a government and development-sector platform meant to connect four groups with different needs: startups looking for capital and visibility, talent looking for roles and training inside the ecosystem, investors looking for credible pipeline, and enablers (accelerators, government bodies, development partners) coordinating programs across all of it.",
+            },
+          ],
+        ],
+      },
+      {
+        kind: "prose",
+        heading: "What I owned",
+        paragraphs: [
+          [
+            {
+              text: "Led design across the platform end-to-end, plus the accompanying admin and analytics dashboards, turning ecosystem and operational data into clear, actionable views for the internal stakeholders running the programs. Also created tailor-made web experiences to attract and engage users, aligning the design with stakeholder business goals rather than a generic directory format.",
+            },
+          ],
+          [
+            { text: "Role-based onboarding.", bold: true },
+            {
+              text: " A short setup flow where new members declare their role in the ecosystem and, separately, their role at their company, so the dashboard that follows is tailored to what a founder, investor, or ecosystem staffer actually needs, instead of one generic home screen for everyone.",
+            },
+          ],
+          [
+            { text: "Self-service company and investor profiles.", bold: true },
+            {
+              text: " Startups maintain their own company, business, and investor information directly, and surface it on a public profile (funding history, sector, team size, similar companies) without needing an admin to publish on their behalf. Investors get the mirror experience: a filterable directory plus deep individual profiles covering programs, eligibility criteria, and partner collaborations.",
+            },
+          ],
+          [
+            { text: "Opportunities hub.", bold: true },
+            {
+              text: " One feed pulling together competitions and prizes, jobs and tenders, education and training, and funding programs: the concrete reasons a startup or a talent profile comes back to the platform after the initial sign-up.",
+            },
+          ],
+          [
+            { text: "Venture Insight.", bold: true },
+            {
+              text: " An analytics layer for ecosystem stewards covering founder demographics (gender, education level, geography), venture distribution over time, and a venture-stage maturity assessment used to read the health of the ecosystem beyond simple headcounts.",
+            },
+          ],
+          [
+            { text: "Live content management.", bold: true },
+            {
+              text: " Homepage sections, hero copy, the rotating headline words, and the platform's headline statistics are all editable by non-technical staff through an admin CMS with a live preview, so updating the public site doesn't require an engineering request.",
+            },
+          ],
+        ],
+      },
+      {
+        kind: "list",
+        heading: "Process",
+        items: [
+          "Designed for four distinct user types on one platform without collapsing them into a single generic experience: startups, talent, investors, and enablers each needed their own entry point.",
+          "Used role-based onboarding to route each new member toward the dashboard and content relevant to them, rather than a one-size-fits-all landing experience.",
+          "Built the ecosystem-facing dashboards around the questions program stewards actually needed answered: who's active, where the gaps are, what's moving.",
+          "Designed the admin CMS as a first-class surface, not an afterthought, so the team running the platform could keep the public site current without depending on engineering for every content change.",
+          "Worked directly with government and development-sector stakeholders to keep the platform aligned with real program goals, not just feature requests.",
+        ],
+      },
+      {
+        kind: "prose",
+        heading: "Outcome",
+        paragraphs: [
+          [
+            { text: "A live, public platform at " },
+            { text: "innovaterwanda.rw", href: "https://innovaterwanda.rw/en" },
+            {
+              text: " serving as the connective layer between Rwanda's startups, talent, investors, and the enablers supporting them.",
+            },
+          ],
+        ],
+      },
+      {
+        kind: "visuals",
+        heading: "Public platform",
+        items: [
+          {
+            src: "/work/innovate-rwanda/home.jpg",
+            alt: "Public homepage — ecosystem stats, trend highlights, resource hub, and partner logos",
+          },
+          {
+            src: "/work/innovate-rwanda/opportunities.jpg",
+            alt: "Opportunities hub — competitions, jobs & tenders, training, and funding programs in one feed",
+          },
+          {
+            src: "/work/innovate-rwanda/investor-details.jpg",
+            alt: "Individual investor profile — programs, eligibility criteria, and partner collaborations",
+          },
+          {
+            src: "/work/innovate-rwanda/company-form.jpg",
+            alt: "Company self-service form — startups maintain their own company, business, and investor information",
+          },
+        ],
+      },
+      {
+        kind: "visuals",
+        heading: "Admin & analytics dashboard",
+        items: [
+          {
+            src: "/work/innovate-rwanda/admin-companies.jpg",
+            alt: "Companies admin — bulk import and platform-wide funding and jobs metrics",
+          },
+          {
+            src: "/work/innovate-rwanda/admin-content-management.jpg",
+            alt: "Live content editor — homepage copy, hero animation words, and stats update without a deploy",
+          },
+          {
+            src: "/work/innovate-rwanda/admin-venture-insight.jpg",
+            alt: "Venture Insight — founder demographics, geography, and education-level breakdowns across the ecosystem",
+          },
+          {
+            src: "/work/innovate-rwanda/admin-venture-assessment.jpg",
+            alt: "Rwanda venture assessment — a venture-stage maturity read on ecosystem health",
+          },
+        ],
+      },
+    ],
+    prevHref: "/work/fixa",
+    prevLabel: "← Fixa HR Platform",
+    nextHref: "/work/rci-experts",
+    nextLabel: "Next: RCI Experts Directory →",
+  },
+  {
+    slug: "rci-experts",
+    domain: "Government · Development",
+    cardTitle: "RCI Experts Directory",
+    cardDescription:
+      "Connecting government agencies, development partners, and civil-society experts.",
+    title: "RCI Experts Directory",
+    eyebrow: "Government · Development — Techclick",
+    heading: "Connecting government agencies with the experts who advise them",
+    lede: "The Rwanda Cooperation Initiative's Experts Directory links government agencies, development partners, and civil-society experts on one platform.",
+    meta: [
+      { label: "Role", value: "Product Lead (Contract)" },
+      { label: "Company", value: "Techclick" },
+      { label: "Timeline", value: "Jun 2024 – Dec 2024" },
+      { label: "Live at", value: "experts.cooperation.rw" },
+    ],
+    blocks: [
+      {
+        kind: "prose",
+        heading: "Context",
+        paragraphs: [
+          [
+            {
+              text: "Development cooperation runs on knowing who the right expert is for a given agency's problem. The Rwanda Cooperation Initiative needed a directory that made that matching process visible and manageable across government agencies, development partners, and the civil-society experts themselves.",
+            },
+          ],
+        ],
+      },
+      {
+        kind: "prose",
+        heading: "What I owned",
+        paragraphs: [
+          [
+            {
+              text: "Design across the platform, alongside the admin and analytics dashboards that turn operational and ecosystem data into clear, actionable views for internal stakeholders: the same dashboard-and-directory pairing as the Innovate Rwanda work, applied to a development-cooperation context instead of a startup ecosystem.",
+            },
+          ],
+        ],
+      },
+      {
+        kind: "list",
+        heading: "Process",
+        items: [
+          "Designed the directory around how agencies actually search for expertise, not just an alphabetical listing.",
+          "Built dashboards giving program stakeholders a working view of expert engagement across agencies and partners.",
+          "Aligned the experience with stakeholder business goals across a genuinely cross-organizational group: government, development partners, and independent experts.",
+        ],
+      },
+      {
+        kind: "prose",
+        heading: "Outcome",
+        paragraphs: [
+          [
+            { text: "A live platform at " },
+            { text: "experts.cooperation.rw", href: "https://experts.cooperation.rw/" },
+            { text: " connecting Rwanda's development-cooperation ecosystem." },
+          ],
+        ],
+      },
+      {
+        kind: "visuals",
+        heading: "Visuals",
+        items: [
+          "Image loading error: Experts Directory search/listing",
+          "Image loading error: engagement analytics dashboard",
+        ],
+      },
+    ],
+    prevHref: "/work/innovate-rwanda",
+    prevLabel: "← Innovate Rwanda",
+    nextHref: "/#work",
+    nextLabel: "Back to all work →",
+  },
+  {
     slug: "irembo",
     domain: "Government",
-    cardTitle: "IremboGov: Self-Service Platform",
+    cardTitle: "IremboGov — Self-Service Platform",
     cardDescription:
       "Letting institutions self-manage entire public services, from configuration to citizen-facing publish.",
-    title: "IremboGov: Self-Service Platform",
-    eyebrow: "Government · Irembo",
+    title: "IremboGov — Self-Service Platform",
+    eyebrow: "Government — Irembo",
     heading: "Letting institutions run their own public services on IremboGov",
     lede: "A platform upgrade that turned Irembo from a portal Irembo alone published to, into infrastructure institutions and third parties could configure and run themselves.",
     meta: [
@@ -129,17 +350,17 @@ export const projects: Project[] = [
   {
     slug: "teleclinic",
     domain: "Health · In progress",
-    cardTitle: "TeleClinic: Nurse & Doctor Platform",
+    cardTitle: "TeleClinic — Nurse & Doctor Platform",
     cardDescription:
       "Taking clinical consultations off paper, a minimal MVP currently in demo testing.",
-    title: "TeleClinic: Nurse & Doctor Platform",
-    eyebrow: "Health · Irembo · In progress",
+    title: "TeleClinic — Nurse & Doctor Platform",
+    eyebrow: "Health — Irembo · In progress",
     heading: "Taking nurse and doctor consultations off paper",
     lede: "An end-to-end web platform for TeleClinic's clinical staff, covering appointments, consultations, patient history, and radiology requests, designed as a deliberately minimal MVP and currently in demo testing with real nurses and doctors.",
     meta: [
       { label: "Role", value: "Lead Product Designer, end-to-end" },
       { label: "Company", value: "Irembo" },
-      { label: "Status", value: "Ongoing, demo testing" },
+      { label: "Status", value: "Ongoing — demo testing" },
       { label: "Platform", value: "TeleClinic (web)" },
     ],
     blocks: [
@@ -196,11 +417,11 @@ export const projects: Project[] = [
         heading: "Visuals",
         items: [
           "Image loading error: sign-in",
-          "Image loading error: nurse home: shift appointments & lab result inbox",
+          "Image loading error: nurse home — shift appointments & lab result inbox",
           "Image loading error: appointments calendar",
-          "Image loading error: patient history: consultations / calls / lab tests / prescriptions / referrals",
-          "Image loading error: radiology test request, conditional modality fields",
-          "Image loading error: radiology report: findings, impression, recommendation",
+          "Image loading error: patient history — consultations / calls / lab tests / prescriptions / referrals",
+          "Image loading error: radiology test request — conditional modality fields",
+          "Image loading error: radiology report — findings, impression, recommendation",
         ],
       },
     ],
@@ -210,88 +431,13 @@ export const projects: Project[] = [
     nextLabel: "Next: NAEB Export Traceability →",
   },
   {
-    slug: "naeb",
-    domain: "Agriculture · Supply Chain",
-    cardTitle: "NAEB Export Traceability",
-    cardDescription:
-      "A wholesale export platform that lets buyers trace produce back to the field it grew in.",
-    title: "NAEB Export Traceability",
-    eyebrow: "Agriculture · Supply Chain · DMM.HeHe × NAEB",
-    heading: "Giving export buyers a line back to the field a crop came from",
-    lede: "A wholesale e-commerce and export platform, built with Rwanda's National Agricultural Export Development Board, that ties every shipment to the field it was grown in.",
-    meta: [
-      { label: "Role", value: "Lead UI/UX Designer" },
-      { label: "Company", value: "DMM.HeHe" },
-      { label: "Timeline", value: "2017 – 2020" },
-      { label: "Partner", value: "NAEB" },
-    ],
-    blocks: [
-      {
-        kind: "prose",
-        heading: "Context",
-        paragraphs: [
-          [
-            {
-              text: "This was one product line inside a wider agriculture management platform spanning the full cultivation cycle, from field and crop-growth monitoring through to supply handoff with wholesale partners. Partnering with NAEB (National Agricultural Export Development Board), the goal was a wholesale export platform where buyers weren't just purchasing produce, but could see where it came from.",
-            },
-          ],
-        ],
-      },
-      {
-        kind: "prose",
-        heading: "What I owned",
-        paragraphs: [
-          [
-            {
-              text: "Design of the wholesale e-commerce and export platform itself, plus the traceability layer running through it, connecting field-level crop data to the export transaction so a buyer could trace a shipment back to its origin. This sat alongside the broader cultivation-cycle platform, which tracked field and crop-growth monitoring through to the point of supply handoff.",
-            },
-          ],
-        ],
-      },
-      {
-        kind: "list",
-        heading: "Process",
-        items: [
-          "Worked with NAEB to understand the export compliance and buyer-trust requirements traceability needed to satisfy.",
-          "Designed the field-to-shipment data model as a user-facing trail, not just a backend audit log: something a buyer could actually read.",
-          "Built interactive prototypes and ran usability testing across this and the platform's other product lines (multi-tenant e-commerce, fleet management) to validate flows before build.",
-        ],
-      },
-      {
-        kind: "prose",
-        heading: "Outcome",
-        paragraphs: [
-          [
-            {
-              text: "A traceability model built the way the best infrastructure companies approach their own work: sensing conditions in the field, analyzing that data, and surfacing it exactly where a decision, here a purchase, actually gets made.",
-            },
-          ],
-        ],
-      },
-      {
-        kind: "visuals",
-        heading: "Visuals",
-        items: [
-          "Image loading error: wholesale export marketplace",
-          "Image loading error: crop traceability / origin trail view",
-          "Image loading error: field & crop-growth monitoring dashboard",
-          "Image loading error: buyer order flow",
-        ],
-      },
-    ],
-    prevHref: "/work/irembo",
-    prevLabel: "← Irembo",
-    nextHref: "/work/fixa",
-    nextLabel: "Next: Fixa HR Platform →",
-  },
-  {
     slug: "fixa",
     domain: "Workforce",
-    cardTitle: "Fixa: Blue-Collar HR Platform",
+    cardTitle: "Fixa — Blue-Collar HR Platform",
     cardDescription:
       "Africa's first HR platform built for blue-collar workforce management, from field app to analytics portal.",
-    title: "Fixa: Blue-Collar HR Platform",
-    eyebrow: "Workforce · Fixa",
+    title: "Fixa — Blue-Collar HR Platform",
+    eyebrow: "Workforce — Fixa",
     heading: "Africa's first HR platform built for blue-collar workforce management",
     lede: "An on-site mobile app, an admin portal, a client-facing portal, and automated email reporting: four surfaces built from market research through to a scalable, deployed product.",
     meta: [
@@ -427,20 +573,20 @@ export const projects: Project[] = [
     nextLabel: "Next: Innovate Rwanda →",
   },
   {
-    slug: "innovate-rwanda",
-    domain: "Government · Ecosystem",
-    cardTitle: "Innovate Rwanda",
+    slug: "naeb",
+    domain: "Agriculture · Supply Chain",
+    cardTitle: "NAEB Export Traceability",
     cardDescription:
-      "The national platform connecting startups, investors, and ecosystem partners.",
-    title: "Innovate Rwanda",
-    eyebrow: "Government · Ecosystem · Techclick",
-    heading: "The national platform connecting Rwanda's startup ecosystem",
-    lede: "Innovate Rwanda links startups, investors, and ecosystem partners on one platform, with the admin and analytics dashboards that turn that activity into something the ecosystem's stewards can act on.",
+      "A wholesale export platform that lets buyers trace produce back to the field it grew in.",
+    title: "NAEB Export Traceability",
+    eyebrow: "Agriculture · Supply Chain — DMM.HeHe × NAEB",
+    heading: "Giving export buyers a line back to the field a crop came from",
+    lede: "A wholesale e-commerce and export platform, built with Rwanda's National Agricultural Export Development Board, that ties every shipment to the field it was grown in.",
     meta: [
-      { label: "Role", value: "Product Lead (Contract)" },
-      { label: "Company", value: "Techclick" },
-      { label: "Timeline", value: "Jun 2024 – Dec 2024" },
-      { label: "Live at", value: "innovaterwanda.rw" },
+      { label: "Role", value: "Lead UI/UX Designer" },
+      { label: "Company", value: "DMM.HeHe" },
+      { label: "Timeline", value: "2017 – 2020" },
+      { label: "Partner", value: "NAEB" },
     ],
     blocks: [
       {
@@ -449,7 +595,7 @@ export const projects: Project[] = [
         paragraphs: [
           [
             {
-              text: "Innovate Rwanda is a government and development-sector platform meant to connect three groups with different needs: startups looking for capital and visibility, investors looking for credible pipeline, and ecosystem partners coordinating programs across all of it.",
+              text: "This was one product line inside a wider agriculture management platform spanning the full cultivation cycle, from field and crop-growth monitoring through to supply handoff with wholesale partners. Partnering with NAEB (National Agricultural Export Development Board), the goal was a wholesale export platform where buyers weren't just purchasing produce, but could see where it came from.",
             },
           ],
         ],
@@ -460,7 +606,7 @@ export const projects: Project[] = [
         paragraphs: [
           [
             {
-              text: "Led design across the platform end-to-end, plus the accompanying admin and analytics dashboards, turning ecosystem and operational data into clear, actionable views for the internal stakeholders running the programs. Also created tailor-made web experiences to attract and engage users, aligning the design with stakeholder business goals rather than a generic directory format.",
+              text: "Design of the wholesale e-commerce and export platform itself, plus the traceability layer running through it, connecting field-level crop data to the export transaction so a buyer could trace a shipment back to its origin. This sat alongside the broader cultivation-cycle platform, which tracked field and crop-growth monitoring through to the point of supply handoff.",
             },
           ],
         ],
@@ -469,9 +615,9 @@ export const projects: Project[] = [
         kind: "list",
         heading: "Process",
         items: [
-          "Designed for three distinct user types on one platform without collapsing them into a single generic experience.",
-          "Built the ecosystem-facing dashboards around the questions program stewards actually needed answered: who's active, where the gaps are, what's moving.",
-          "Worked directly with government and development-sector stakeholders to keep the platform aligned with real program goals, not just feature requests.",
+          "Worked with NAEB to understand the export compliance and buyer-trust requirements traceability needed to satisfy.",
+          "Designed the field-to-shipment data model as a user-facing trail, not just a backend audit log: something a buyer could actually read.",
+          "Built interactive prototypes and ran usability testing across this and the platform's other product lines (multi-tenant e-commerce, fleet management) to validate flows before build.",
         ],
       },
       {
@@ -479,10 +625,8 @@ export const projects: Project[] = [
         heading: "Outcome",
         paragraphs: [
           [
-            { text: "A live, public platform at " },
-            { text: "innovaterwanda.rw", href: "https://innovaterwanda.rw/en" },
             {
-              text: " serving as the connective layer between Rwanda's startups, investors, and the partners supporting them.",
+              text: "A traceability model close to how Sand-style infrastructure companies frame their own work: sensing conditions in the field, analyzing that data, and surfacing it where a decision, here a purchase, actually gets made.",
             },
           ],
         ],
@@ -491,88 +635,17 @@ export const projects: Project[] = [
         kind: "visuals",
         heading: "Visuals",
         items: [
-          "Image loading error: Innovate Rwanda public platform",
-          "Image loading error: ecosystem analytics dashboard",
+          "Image loading error: wholesale export marketplace",
+          "Image loading error: crop traceability / origin trail view",
+          "Image loading error: field & crop-growth monitoring dashboard",
+          "Image loading error: buyer order flow",
         ],
       },
     ],
-    prevHref: "/work/fixa",
-    prevLabel: "← Fixa HR Platform",
-    nextHref: "/work/rci-experts",
-    nextLabel: "Next: RCI Experts Directory →",
-  },
-  {
-    slug: "rci-experts",
-    domain: "Government · Development",
-    cardTitle: "RCI Experts Directory",
-    cardDescription:
-      "Connecting government agencies, development partners, and civil-society experts.",
-    title: "RCI Experts Directory",
-    eyebrow: "Government · Development · Techclick",
-    heading: "Connecting government agencies with the experts who advise them",
-    lede: "The Rwanda Cooperation Initiative's Experts Directory links government agencies, development partners, and civil-society experts on one platform.",
-    meta: [
-      { label: "Role", value: "Product Lead (Contract)" },
-      { label: "Company", value: "Techclick" },
-      { label: "Timeline", value: "Jun 2024 – Dec 2024" },
-      { label: "Live at", value: "experts.cooperation.rw" },
-    ],
-    blocks: [
-      {
-        kind: "prose",
-        heading: "Context",
-        paragraphs: [
-          [
-            {
-              text: "Development cooperation runs on knowing who the right expert is for a given agency's problem. The Rwanda Cooperation Initiative needed a directory that made that matching process visible and manageable across government agencies, development partners, and the civil-society experts themselves.",
-            },
-          ],
-        ],
-      },
-      {
-        kind: "prose",
-        heading: "What I owned",
-        paragraphs: [
-          [
-            {
-              text: "Design across the platform, alongside the admin and analytics dashboards that turn operational and ecosystem data into clear, actionable views for internal stakeholders: the same dashboard-and-directory pairing as the Innovate Rwanda work, applied to a development-cooperation context instead of a startup ecosystem.",
-            },
-          ],
-        ],
-      },
-      {
-        kind: "list",
-        heading: "Process",
-        items: [
-          "Designed the directory around how agencies actually search for expertise, not just an alphabetical listing.",
-          "Built dashboards giving program stakeholders a working view of expert engagement across agencies and partners.",
-          "Aligned the experience with stakeholder business goals across a genuinely cross-organizational group: government, development partners, and independent experts.",
-        ],
-      },
-      {
-        kind: "prose",
-        heading: "Outcome",
-        paragraphs: [
-          [
-            { text: "A live platform at " },
-            { text: "experts.cooperation.rw", href: "https://experts.cooperation.rw/" },
-            { text: " connecting Rwanda's development-cooperation ecosystem." },
-          ],
-        ],
-      },
-      {
-        kind: "visuals",
-        heading: "Visuals",
-        items: [
-          "Image loading error: Experts Directory search/listing",
-          "Image loading error: engagement analytics dashboard",
-        ],
-      },
-    ],
-    prevHref: "/work/innovate-rwanda",
-    prevLabel: "← Innovate Rwanda",
-    nextHref: "/#work",
-    nextLabel: "Back to all work →",
+    prevHref: "/work/irembo",
+    prevLabel: "← Irembo",
+    nextHref: "/work/fixa",
+    nextLabel: "Next: Fixa HR Platform →",
   },
 ];
 

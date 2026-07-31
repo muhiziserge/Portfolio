@@ -140,7 +140,7 @@ export default function Home() {
           </div>
         </div>
         <div className="wrap footer-base">
-          © 2026 Serge Muhizi. Built with intent, not a template.
+          © 2026 Serge Muhizi. Built with intent.
         </div>
       </footer>
     </>

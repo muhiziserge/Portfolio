@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 export function Nav() {
   return (
@@ -7,17 +8,20 @@ export function Nav() {
         <Link className="nav-name" href="/">
           Serge Muhizi
         </Link>
-        <ul className="nav-links">
-          <li>
-            <Link href="/#work">Work</Link>
-          </li>
-          <li>
-            <Link href="/#about">About</Link>
-          </li>
-          <li>
-            <Link href="/#contact">Contact</Link>
-          </li>
-        </ul>
+        <div className="nav-right">
+          <ul className="nav-links">
+            <li>
+              <Link href="/#work">Work</Link>
+            </li>
+            <li>
+              <Link href="/#about">About</Link>
+            </li>
+            <li>
+              <Link href="/#contact">Contact</Link>
+            </li>
+          </ul>
+          <ThemeToggle />
+        </div>
       </div>
     </nav>
   );
