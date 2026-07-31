@@ -1,5 +1,8 @@
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
-import type { CSSProperties } from "react";
+import type { CSSProperties, MouseEvent } from "react";
 import type { QuiltImage } from "@/lib/projects";
 
 // Matches the grid's own sizing (globals.css): a column is COLUMN_PX
@@ -12,6 +15,7 @@ const GAP_PX = 12;
 const ROW_PX = 8;
 const WIDE_RATIO = 1.1;
 const MIN_ROW_SPAN = 6;
+const TOOLTIP_OFFSET_PX = 14;
 
 // A span of N row-tracks renders as N*ROW_PX + (N-1)*GAP_PX tall — the
 // grid's row gap compounds across every internal track boundary, not
@@ -22,47 +26,82 @@ function rowSpanFor(ratio: number, colSpan: 1 | 2) {
   return Math.max(MIN_ROW_SPAN, Math.round((desiredHeight + GAP_PX) / (ROW_PX + GAP_PX)));
 }
 
+interface Pointer {
+  x: number;
+  y: number;
+  w: number;
+  h: number;
+}
+
+function QuiltItem({ image }: { image: QuiltImage }) {
+  const ratio = image.width / image.height;
+  const isWide = ratio >= WIDE_RATIO;
+  // Below the breakpoint where a second column actually fits, a "span 2"
+  // item forces the grid to grow an implicit extra column sized to
+  // whatever space is left over, distorting every track — so the
+  // 2-column span only takes effect via a media query (see globals.css),
+  // and both row-span variants are precomputed here since inline styles
+  // can't be conditioned on a media query.
+  const rowSpanNarrow = rowSpanFor(ratio, 1);
+  const gridStyle = isWide
+    ? ({
+        "--row-narrow": rowSpanNarrow,
+        "--row-wide": rowSpanFor(ratio, 2),
+      } as CSSProperties)
+    : { gridRow: `span ${rowSpanNarrow}` };
+
+  const [pointer, setPointer] = useState<Pointer | null>(null);
+  const [visible, setVisible] = useState(false);
+
+  function handleMouseMove(e: MouseEvent<HTMLDivElement>) {
+    const rect = e.currentTarget.getBoundingClientRect();
+    setPointer({ x: e.clientX - rect.left, y: e.clientY - rect.top, w: rect.width, h: rect.height });
+  }
+
+  // Flip the tooltip to whichever side of the cursor has room, so it
+  // never runs past the tile's own edge.
+  const tooltipStyle: CSSProperties = pointer
+    ? {
+        left: pointer.x,
+        top: pointer.y,
+        transform: `translate(${
+          pointer.x > pointer.w / 2 ? `calc(-100% - ${TOOLTIP_OFFSET_PX}px)` : `${TOOLTIP_OFFSET_PX}px`
+        }, ${pointer.y > pointer.h / 2 ? `calc(-100% - ${TOOLTIP_OFFSET_PX}px)` : `${TOOLTIP_OFFSET_PX}px`})`,
+      }
+    : { left: 0, top: 0, transform: `translate(${TOOLTIP_OFFSET_PX}px, ${TOOLTIP_OFFSET_PX}px)` };
+
+  return (
+    <div
+      className={`quilt-item${isWide ? " wide" : ""}`}
+      tabIndex={0}
+      style={gridStyle}
+      onMouseMove={handleMouseMove}
+      onMouseEnter={() => setVisible(true)}
+      onMouseLeave={() => setVisible(false)}
+      onFocus={() => setVisible(true)}
+      onBlur={() => setVisible(false)}
+    >
+      <Image
+        src={image.src}
+        width={image.width}
+        height={image.height}
+        alt={image.title}
+        sizes="(max-width: 720px) 100vw, 560px"
+      />
+      <div className={`quilt-tooltip${visible ? " visible" : ""}`} style={tooltipStyle}>
+        <h3>{image.title}</h3>
+        <p>{image.description}</p>
+      </div>
+    </div>
+  );
+}
+
 export function QuiltedGrid({ images }: { images: QuiltImage[] }) {
   return (
     <div className="quilt">
-      {images.map((image) => {
-        const ratio = image.width / image.height;
-        const isWide = ratio >= WIDE_RATIO;
-        // Below the breakpoint where a second column actually fits, a
-        // "span 2" item forces the grid to grow an implicit extra column
-        // sized to whatever space is left over, distorting every track —
-        // so the 2-column span only takes effect at --quilt-wide-bp
-        // (see globals.css), and both row-span variants are precomputed
-        // here since inline styles can't be conditioned on a media query.
-        const rowSpanNarrow = rowSpanFor(ratio, 1);
-        const style = isWide
-          ? ({
-              "--row-narrow": rowSpanNarrow,
-              "--row-wide": rowSpanFor(ratio, 2),
-            } as CSSProperties)
-          : { gridRow: `span ${rowSpanNarrow}` };
-
-        return (
-          <div
-            className={`quilt-item${isWide ? " wide" : ""}`}
-            key={image.src}
-            tabIndex={0}
-            style={style}
-          >
-            <Image
-              src={image.src}
-              width={image.width}
-              height={image.height}
-              alt={image.title}
-              sizes="(max-width: 720px) 100vw, 560px"
-            />
-            <div className="quilt-caption">
-              <h3>{image.title}</h3>
-              <p>{image.description}</p>
-            </div>
-          </div>
-        );
-      })}
+      {images.map((image) => (
+        <QuiltItem image={image} key={image.src} />
+      ))}
     </div>
   );
 }

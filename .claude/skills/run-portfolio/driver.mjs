@@ -63,6 +63,12 @@ for await (const raw of rl) {
         await page.locator(rest.join(' ')).first().hover();
         console.log(`OK hover ${rest.join(' ')}`);
         break;
+      case 'moveto': {
+        const [x, y] = rest.join(' ').split(',').map(Number);
+        await page.mouse.move(x, y);
+        console.log(`OK moveto ${x},${y}`);
+        break;
+      }
       case 'fill': {
         const [selector, ...text] = rest;
         await page.locator(selector).first().fill(text.join(' '));

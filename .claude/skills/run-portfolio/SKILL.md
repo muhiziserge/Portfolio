@@ -73,7 +73,8 @@ Driver commands:
 | `wait-for text=<substring>` | wait for visible text |
 | `wait-for selector=<css>` | wait for a CSS selector |
 | `click <css selector>` | click first match |
-| `hover <css selector>` | hover first match — use to check `:hover`-revealed UI (captions, tooltips) |
+| `hover <css selector>` | hover first match (scrolls it into view, moves to its center) — use to check `:hover`-revealed UI (captions, tooltips) |
+| `moveto <x,y>` | move the mouse to absolute **viewport** coordinates (not page/document coordinates — `hover` first if the target isn't already scrolled into view) — use to test mouse-tracking UI at a specific point, e.g. checking a tooltip flips near an element's edge |
 | `fill <css selector> <text...>` | fill an input (goes through Playwright's input pipeline, so React controlled inputs fire `onChange` correctly) |
 | `press <key>` | keyboard press, e.g. `Enter` |
 | `screenshot [name]` | full-page PNG to `screenshots/<name or auto-index>.png` |

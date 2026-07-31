@@ -526,33 +526,37 @@ p {
   object-fit: cover;
   display: block;
 }
-.quilt-caption {
+.quilt-tooltip {
   position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  padding: 20px;
-  background: linear-gradient(
-    to top,
-    rgba(16, 17, 21, 0.94) 0%,
-    rgba(16, 17, 21, 0.6) 45%,
-    rgba(16, 17, 21, 0) 100%
-  );
+  z-index: 5;
+  max-width: 200px;
+  padding: 10px 14px;
+  border-radius: 14px;
+  background: rgba(33, 36, 43, 0.3);
+  backdrop-filter: blur(18px) saturate(180%);
+  -webkit-backdrop-filter: blur(18px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
   opacity: 0;
-  transition: opacity 0.25s ease;
+  pointer-events: none;
+  transition: opacity 0.15s ease;
 }
-.quilt-item:hover .quilt-caption,
-.quilt-item:focus-visible .quilt-caption {
+.quilt-tooltip.visible {
   opacity: 1;
 }
-.quilt-caption h3 {
-  font-size: 15px;
+.quilt-tooltip h3 {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
   color: var(--paper);
-  margin-bottom: 6px;
+  margin-bottom: 4px;
 }
-.quilt-caption p {
-  font-size: 13px;
+.quilt-tooltip p {
+  font-size: 12px;
+  line-height: 1.4;
   color: var(--mist);
 }
 
