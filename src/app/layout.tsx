@@ -11,8 +11,8 @@ const THEME_INIT_SCRIPT = `
     var theme =
       stored === "light" || stored === "dark"
         ? stored
-        : window.matchMedia("(prefers-color-scheme: light)").matches
-          ? "light"
+        : stored === "system"
+          ? (window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark")
           : "dark";
     document.documentElement.setAttribute("data-theme", theme);
   } catch (e) {}
@@ -40,7 +40,7 @@ const mono = IBM_Plex_Mono({
 export const metadata: Metadata = {
   title: "Serge Muhizi — Product Designer",
   description:
-    "Product designer working on the systems critical infrastructure runs on — government, health, agriculture, and enterprise data platforms across Rwanda.",
+    "Product designer working on the systems critical infrastructure runs on: government, health, agriculture, and enterprise data platforms across Rwanda.",
 };
 
 export default function RootLayout({

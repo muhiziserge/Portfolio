@@ -11,8 +11,8 @@ const THEME_INIT_SCRIPT = `
     var theme =
       stored === "light" || stored === "dark"
         ? stored
-        : window.matchMedia("(prefers-color-scheme: light)").matches
-          ? "light"
+        : stored === "system"
+          ? (window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark")
           : "dark";
     document.documentElement.setAttribute("data-theme", theme);
   } catch (e) {}

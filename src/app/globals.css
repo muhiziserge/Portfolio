@@ -22,6 +22,8 @@
   --fog: #e7e7e8;
   --paper: #f4f4f3;
   --nav-bg: rgba(16, 17, 21, 0.86);
+  --quilt-tooltip-bg: rgba(33, 36, 43, 0.9);
+  --quilt-tooltip-border: rgba(255, 255, 255, 0.14);
 
   /* type */
   --display: var(--font-display), sans-serif;
@@ -48,6 +50,8 @@
   --fog: #1c1d20;
   --paper: #101115;
   --nav-bg: rgba(247, 247, 245, 0.86);
+  --quilt-tooltip-bg: rgba(255, 255, 255, 0.92);
+  --quilt-tooltip-border: rgba(16, 17, 21, 0.1);
 }
 
 * {
@@ -609,6 +613,119 @@ p {
   .shot-grid {
     grid-template-columns: 1fr;
   }
+}
+
+/* ---------- real-screenshot gallery ---------- */
+.shot-frame {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: var(--charcoal);
+  border-radius: var(--radius);
+  aspect-ratio: 16 / 10;
+  max-height: 640px;
+}
+.shot-frame-fit .shot-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.shot-frame-scroll .shot-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  animation: shot-scroll var(--shot-duration, 10s) ease-in-out infinite alternate;
+}
+@keyframes shot-scroll {
+  0%,
+  8% {
+    transform: translateY(0);
+  }
+  92%,
+  100% {
+    transform: translateY(calc(-1 * var(--shot-distance, 0px)));
+  }
+}
+.shot-caption {
+  margin-top: 8px;
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--slate);
+  text-align: center;
+}
+
+/* ---------- portal image quilted grid ---------- */
+/* Column/row units here (220px, 12px gap, 8px row) are mirrored in
+   quilted-grid.tsx's span calculation — keep both in sync. */
+.quilt {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 220px);
+  grid-auto-rows: 8px;
+  grid-auto-flow: dense;
+  gap: 12px;
+  margin-top: 8px;
+}
+.quilt-item {
+  position: relative;
+  grid-column: span 1;
+  grid-row: span var(--row-narrow);
+  border: 1px solid var(--line);
+  background: var(--charcoal);
+  overflow: hidden;
+}
+/* A "span 2" item forces the grid to grow an implicit extra column when
+   fewer than 2 real columns fit, sized to whatever's left over — so the
+   wide span only applies once the viewport can actually fit two 220px
+   columns (2*220px + 12px gap = 452px content width). */
+@media (min-width: 480px) {
+  .quilt-item.wide {
+    grid-column: span 2;
+    grid-row: span var(--row-wide);
+  }
+}
+.quilt-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.quilt-tooltip {
+  position: fixed;
+  z-index: 9999;
+  width: max-content;
+  max-width: min(320px, 90vw);
+  padding: 10px 14px;
+  border-radius: 14px;
+  background: var(--quilt-tooltip-bg);
+  backdrop-filter: blur(18px) saturate(180%);
+  -webkit-backdrop-filter: blur(18px) saturate(180%);
+  border: 1px solid var(--quilt-tooltip-border);
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s ease;
+}
+.quilt-tooltip.visible {
+  opacity: 1;
+}
+.quilt-tooltip h3 {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--paper);
+  margin-bottom: 4px;
+}
+.quilt-tooltip p {
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--mist);
 }
 
 .cs-nextprev {

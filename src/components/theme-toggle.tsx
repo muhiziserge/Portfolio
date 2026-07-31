@@ -26,11 +26,11 @@ function applyTheme(theme: Theme) {
 
 function getStoredTheme(): Theme {
   const stored = window.localStorage.getItem(STORAGE_KEY);
-  return stored === "light" || stored === "dark" ? stored : "system";
+  return stored === "light" || stored === "dark" || stored === "system" ? stored : "dark";
 }
 
 function getServerTheme(): Theme {
-  return "system";
+  return "dark";
 }
 
 function subscribe(callback: () => void) {
@@ -43,11 +43,7 @@ function subscribe(callback: () => void) {
 }
 
 function selectTheme(theme: Theme) {
-  if (theme === "system") {
-    window.localStorage.removeItem(STORAGE_KEY);
-  } else {
-    window.localStorage.setItem(STORAGE_KEY, theme);
-  }
+  window.localStorage.setItem(STORAGE_KEY, theme);
   applyTheme(theme);
   listeners.forEach((notify) => notify());
 }
@@ -80,7 +76,7 @@ export function ThemeToggle() {
     };
   }, []);
 
-  const current = OPTIONS.find((o) => o.value === theme)?.label ?? "System";
+  const current = OPTIONS.find((o) => o.value === theme)?.label ?? "Dark";
 
   return (
     <div className="theme-menu" ref={ref}>
