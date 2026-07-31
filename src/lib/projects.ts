@@ -347,21 +347,21 @@ export const projects: Project[] = [
         heading: "On-site mobile app",
         primary: {
           src: "/work/fixa/app-home.png",
-          width: 1314,
-          height: 4155,
+          width: 1290,
+          height: 3555,
           alt: "Mobile app home for a supervisor managing multiple projects, with attendance-approval notifications and worker search",
         },
         carousel: [
           {
             src: "/work/fixa/app-home-single-project.png",
-            width: 1314,
-            height: 2802,
+            width: 1290,
+            height: 2700,
             alt: "Mobile app home for a single-project user, showing an attendance-updates feed with approval status",
           },
           {
             src: "/work/fixa/app-attendance.png",
             width: 1290,
-            height: 2796,
+            height: 2700,
             alt: "Marking attendance on-site by shift and trade, with a running headcount",
           },
         ],
@@ -371,21 +371,21 @@ export const projects: Project[] = [
         heading: "Admin portal",
         primary: {
           src: "/work/fixa/admin-workforce.png",
-          width: 3096,
-          height: 2380,
+          width: 3120,
+          height: 2534,
           alt: "Workforce directory listing every worker with status, trade, project, and daily earnings",
         },
         carousel: [
           {
             src: "/work/fixa/admin-worker-profile.png",
-            width: 3096,
-            height: 2380,
+            width: 3120,
+            height: 2064,
             alt: "Individual worker profile with trades, day rates, ratings, and certificates",
           },
           {
             src: "/work/fixa/admin-worker-scores.png",
-            width: 3096,
-            height: 2380,
+            width: 3120,
+            height: 1800,
             alt: "Worker scorecard breaking performance into flexibility, reliability, KYC, technical, and multi-skill scores",
           },
         ],
@@ -395,15 +395,15 @@ export const projects: Project[] = [
         heading: "Client portal",
         primary: {
           src: "/work/fixa/client-attendance.png",
-          width: 3024,
-          height: 2356,
+          width: 3120,
+          height: 2098,
           alt: "Client-facing portal for reviewing and approving submitted shift attendance by trade",
         },
         carousel: [
           {
             src: "/work/fixa/client-billing.png",
-            width: 3024,
-            height: 2356,
+            width: 3120,
+            height: 2204,
             alt: "Client billing view listing invoices, payment status, and linked tax (EBM) certificates",
           },
         ],
@@ -414,14 +414,14 @@ export const projects: Project[] = [
         primary: {
           src: "/work/fixa/email-report.png",
           width: 3092,
-          height: 6056,
+          height: 4494,
           alt: "Daily reporting email breaking down active workers, shifts, and USSD usage per project with charts",
         },
         carousel: [
           {
             src: "/work/fixa/email-report-simple.png",
             width: 3092,
-            height: 7190,
+            height: 5426,
             alt: "Plain-text variant of the daily reporting email, sent automatically per active project",
           },
         ],
