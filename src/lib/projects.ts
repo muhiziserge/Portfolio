@@ -254,7 +254,7 @@ export const projects: Project[] = [
         paragraphs: [
           [
             {
-              text: "A traceability model close to how Sand-style infrastructure companies frame their own work: sensing conditions in the field, analyzing that data, and surfacing it where a decision — here, a purchase — actually gets made.",
+              text: "A traceability model built the way the best infrastructure companies approach their own work: sensing conditions in the field, analyzing that data, and surfacing it exactly where a decision — here, a purchase — actually gets made.",
             },
           ],
         ],
