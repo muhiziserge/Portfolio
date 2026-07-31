@@ -22,9 +22,9 @@ const mono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Serge Muhizi — Product Designer",
+  title: "Serge Muhizi: Product Designer",
   description:
-    "Product designer working on the systems critical infrastructure runs on — government, health, agriculture, and enterprise data platforms across Rwanda.",
+    "Product designer working on the systems critical infrastructure runs on: government, health, agriculture, and enterprise data platforms across Rwanda.",
 };
 
 export default function RootLayout({

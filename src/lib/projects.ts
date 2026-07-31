@@ -46,11 +46,11 @@ export const projects: Project[] = [
   {
     slug: "irembo",
     domain: "Government",
-    cardTitle: "IremboGov — Self-Service Platform",
+    cardTitle: "IremboGov: Self-Service Platform",
     cardDescription:
       "Letting institutions self-manage entire public services, from configuration to citizen-facing publish.",
-    title: "IremboGov — Self-Service Platform",
-    eyebrow: "Government — Irembo",
+    title: "IremboGov: Self-Service Platform",
+    eyebrow: "Government · Irembo",
     heading: "Letting institutions run their own public services on IremboGov",
     lede: "A platform upgrade that turned Irembo from a portal Irembo alone published to, into infrastructure institutions and third parties could configure and run themselves.",
     meta: [
@@ -66,7 +66,7 @@ export const projects: Project[] = [
         paragraphs: [
           [
             {
-              text: "Irembo is Rwanda's national digital public services company, and IremboGov is the country's e-government portal — where citizens access public services. It's a system with real operational stakes: for citizens who are often coming online for the first time, and for institutions that depend on the platform actually working.",
+              text: "Irembo is Rwanda's national digital public services company, and IremboGov is the country's e-government portal, where citizens access public services. It's a system with real operational stakes: for citizens who are often coming online for the first time, and for institutions that depend on the platform actually working.",
             },
           ],
         ],
@@ -78,13 +78,13 @@ export const projects: Project[] = [
           [
             { text: "Self-service platform upgrade.", bold: true },
             {
-              text: " Institutions and third-party organizations previously depended on Irembo to publish and manage their services. I owned end-to-end design of an upgrade that lets them self-manage the full lifecycle instead — configuring and designing a service, processing applications, and monitoring performance through their own portal — with the finished service published either to citizens on IremboGov or to the organization's own configurable white-label storefront.",
+              text: " Institutions and third-party organizations previously depended on Irembo to publish and manage their services. I owned end-to-end design of an upgrade that lets them self-manage the full lifecycle instead: configuring and designing a service, processing applications, and monitoring performance through their own portal, with the finished service published either to citizens on IremboGov or to the organization's own configurable white-label storefront.",
             },
           ],
           [
             { text: "IremboAI chatbot design system.", bold: true },
             {
-              text: " Directed the design system behind Irembo's AI chatbot suite, covering citizen services from driving test results to bill payments — taken from Figma components through to a working Angular demo.",
+              text: " Directed the design system behind Irembo's AI chatbot suite, covering citizen services from driving test results to bill payments, taken from Figma components through to a working Angular demo.",
             },
           ],
         ],
@@ -96,7 +96,7 @@ export const projects: Project[] = [
           "Mapped the existing service-publishing workflow to find where institutions were blocked without Irembo's direct involvement.",
           "Designed the configuration, application-processing, and monitoring surfaces as one coherent lifecycle rather than three separate tools.",
           "Worked cross-functionally with engineering and cross-org stakeholders, including GIZ and KfW, to reconcile government process constraints with a self-service model.",
-          "Built and scaled the design practice alongside the product work — absorbing a second design team and introducing a rubric-based hiring process for senior designers.",
+          "Built and scaled the design practice alongside the product work, absorbing a second design team and introducing a rubric-based hiring process for senior designers.",
         ],
       },
       {
@@ -105,7 +105,7 @@ export const projects: Project[] = [
         paragraphs: [
           [
             {
-              text: "Institutions and third-party organizations can now run their own services on Irembo end-to-end — configuring, processing, and monitoring without depending on Irembo's team for each step — while citizens still reach every service through a single, consistent IremboGov experience.",
+              text: "Institutions and third-party organizations can now run their own services on Irembo end-to-end: configuring, processing, and monitoring without depending on Irembo's team for each step, while citizens still reach every service through a single, consistent IremboGov experience.",
             },
           ],
         ],
@@ -129,17 +129,17 @@ export const projects: Project[] = [
   {
     slug: "teleclinic",
     domain: "Health · In progress",
-    cardTitle: "TeleClinic — Nurse & Doctor Platform",
+    cardTitle: "TeleClinic: Nurse & Doctor Platform",
     cardDescription:
-      "Taking clinical consultations off paper — a minimal MVP currently in demo testing.",
-    title: "TeleClinic — Nurse & Doctor Platform",
-    eyebrow: "Health — Irembo · In progress",
+      "Taking clinical consultations off paper, a minimal MVP currently in demo testing.",
+    title: "TeleClinic: Nurse & Doctor Platform",
+    eyebrow: "Health · Irembo · In progress",
     heading: "Taking nurse and doctor consultations off paper",
-    lede: "An end-to-end web platform for TeleClinic's clinical staff — appointments, consultations, patient history, and radiology requests — designed as a deliberately minimal MVP and currently in demo testing with real nurses and doctors.",
+    lede: "An end-to-end web platform for TeleClinic's clinical staff, covering appointments, consultations, patient history, and radiology requests, designed as a deliberately minimal MVP and currently in demo testing with real nurses and doctors.",
     meta: [
       { label: "Role", value: "Lead Product Designer, end-to-end" },
       { label: "Company", value: "Irembo" },
-      { label: "Status", value: "Ongoing — demo testing" },
+      { label: "Status", value: "Ongoing, demo testing" },
       { label: "Platform", value: "TeleClinic (web)" },
     ],
     blocks: [
@@ -149,12 +149,12 @@ export const projects: Project[] = [
         paragraphs: [
           [
             {
-              text: "TeleClinic is Irembo's teleconsultation health platform. Before this project, the clinical side of it — the work nurses and doctors actually do during a shift — ran on paper: scheduling, consultation notes, lab and radiology requests, prescriptions, referrals. Paper doesn't search, doesn't hand off cleanly between shifts or specialists, and doesn't scale past a handful of patients a day.",
+              text: "TeleClinic is Irembo's teleconsultation health platform. Before this project, the clinical side of it, the work nurses and doctors actually do during a shift, ran on paper: scheduling, consultation notes, lab and radiology requests, prescriptions, referrals. Paper doesn't search, doesn't hand off cleanly between shifts or specialists, and doesn't scale past a handful of patients a day.",
             },
           ],
           [
             {
-              text: 'The brief wasn\'t "digitize everything." It was to find the smallest version of a digital clinical workflow that could actually replace paper for a nurse and a doctor on shift — nothing speculative, nothing waiting on a future roadmap.',
+              text: 'The brief wasn\'t "digitize everything." It was to find the smallest version of a digital clinical workflow that could actually replace paper for a nurse and a doctor on shift: nothing speculative, nothing waiting on a future roadmap.',
             },
           ],
         ],
@@ -165,7 +165,7 @@ export const projects: Project[] = [
         paragraphs: [
           [
             {
-              text: "End-to-end design of the Nurse and Doctor experience: sign-in, a home dashboard built around the day's shift — today's appointment queue and an inbox of lab results awaiting review — an appointments calendar, the consultation flow itself, and a patient history section covering consultations, calls, lab tests, prescriptions, and referrals in one place. Alongside that, a radiology request flow: a short conditional-logic form for the clinician requesting a scan, and a structured report view — findings, impression, recommendation — for whoever needs to act on the result. I also designed the shift rota that sits behind the appointment scheduling.",
+              text: "End-to-end design of the Nurse and Doctor experience: sign-in, a home dashboard built around the day's shift (today's appointment queue and an inbox of lab results awaiting review), an appointments calendar, the consultation flow itself, and a patient history section covering consultations, calls, lab tests, prescriptions, and referrals in one place. Alongside that, a radiology request flow: a short conditional-logic form for the clinician requesting a scan, and a structured report view covering findings, impression, and recommendation for whoever needs to act on the result. I also designed the shift rota that sits behind the appointment scheduling.",
             },
           ],
         ],
@@ -175,9 +175,9 @@ export const projects: Project[] = [
         heading: "Process",
         items: [
           "Started from the paper forms and shift patterns nurses and doctors already used, instead of inventing a new mental model they'd have to relearn.",
-          "Scoped deliberately to an MVP — cut anything speculative and kept only what a shift genuinely needs on day one: appointments, consultation capture, patient history, lab and radiology requests.",
-          "Designed the radiology flow as two connected moments rather than one form: a fast request with conditional fields for the clinician ordering the scan, and a separate structured report for the clinician acting on the result — same data, read differently depending on who's looking and why.",
-          "Built the patient history around how a clinician actually looks a patient up mid-shift — one record, tabbed by consultations, calls, lab tests, prescriptions, and referrals, instead of five separate places to check.",
+          "Scoped deliberately to an MVP, cutting anything speculative and keeping only what a shift genuinely needs on day one: appointments, consultation capture, patient history, lab and radiology requests.",
+          "Designed the radiology flow as two connected moments rather than one form: a fast request with conditional fields for the clinician ordering the scan, and a separate structured report for the clinician acting on the result: same data, read differently depending on who's looking and why.",
+          "Built the patient history around how a clinician actually looks a patient up mid-shift: one record, tabbed by consultations, calls, lab tests, prescriptions, and referrals, instead of five separate places to check.",
         ],
       },
       {
@@ -186,7 +186,7 @@ export const projects: Project[] = [
         paragraphs: [
           [
             {
-              text: "This hasn't shipped yet. It's currently in demo testing and iteration with real nurses and doctors — the goal at this stage is validating that a genuinely minimal, MVP-only experience is enough to replace their paper workflow, before Irembo commits further down the roadmap. What's designed so far is deliberately narrow by choice, not by constraint.",
+              text: "This hasn't shipped yet. It's currently in demo testing and iteration with real nurses and doctors. The goal at this stage is validating that a genuinely minimal, MVP-only experience is enough to replace their paper workflow, before Irembo commits further down the roadmap. What's designed so far is deliberately narrow by choice, not by constraint.",
             },
           ],
         ],
@@ -196,11 +196,11 @@ export const projects: Project[] = [
         heading: "Visuals",
         items: [
           "Image loading error: sign-in",
-          "Image loading error: nurse home — shift appointments & lab result inbox",
+          "Image loading error: nurse home: shift appointments & lab result inbox",
           "Image loading error: appointments calendar",
-          "Image loading error: patient history — consultations / calls / lab tests / prescriptions / referrals",
-          "Image loading error: radiology test request — conditional modality fields",
-          "Image loading error: radiology report — findings, impression, recommendation",
+          "Image loading error: patient history: consultations / calls / lab tests / prescriptions / referrals",
+          "Image loading error: radiology test request, conditional modality fields",
+          "Image loading error: radiology report: findings, impression, recommendation",
         ],
       },
     ],
@@ -216,7 +216,7 @@ export const projects: Project[] = [
     cardDescription:
       "A wholesale export platform that lets buyers trace produce back to the field it grew in.",
     title: "NAEB Export Traceability",
-    eyebrow: "Agriculture · Supply Chain — DMM.HeHe × NAEB",
+    eyebrow: "Agriculture · Supply Chain · DMM.HeHe × NAEB",
     heading: "Giving export buyers a line back to the field a crop came from",
     lede: "A wholesale e-commerce and export platform, built with Rwanda's National Agricultural Export Development Board, that ties every shipment to the field it was grown in.",
     meta: [
@@ -232,7 +232,7 @@ export const projects: Project[] = [
         paragraphs: [
           [
             {
-              text: "This was one product line inside a wider agriculture management platform spanning the full cultivation cycle — field and crop-growth monitoring through to supply handoff with wholesale partners. Partnering with NAEB (National Agricultural Export Development Board), the goal was a wholesale export platform where buyers weren't just purchasing produce, but could see where it came from.",
+              text: "This was one product line inside a wider agriculture management platform spanning the full cultivation cycle, from field and crop-growth monitoring through to supply handoff with wholesale partners. Partnering with NAEB (National Agricultural Export Development Board), the goal was a wholesale export platform where buyers weren't just purchasing produce, but could see where it came from.",
             },
           ],
         ],
@@ -243,7 +243,7 @@ export const projects: Project[] = [
         paragraphs: [
           [
             {
-              text: "Design of the wholesale e-commerce and export platform itself, plus the traceability layer running through it — connecting field-level crop data to the export transaction, so a buyer could trace a shipment back to its origin. This sat alongside the broader cultivation-cycle platform, which tracked field and crop-growth monitoring through to the point of supply handoff.",
+              text: "Design of the wholesale e-commerce and export platform itself, plus the traceability layer running through it, connecting field-level crop data to the export transaction so a buyer could trace a shipment back to its origin. This sat alongside the broader cultivation-cycle platform, which tracked field and crop-growth monitoring through to the point of supply handoff.",
             },
           ],
         ],
@@ -253,7 +253,7 @@ export const projects: Project[] = [
         heading: "Process",
         items: [
           "Worked with NAEB to understand the export compliance and buyer-trust requirements traceability needed to satisfy.",
-          "Designed the field-to-shipment data model as a user-facing trail, not just a backend audit log — something a buyer could actually read.",
+          "Designed the field-to-shipment data model as a user-facing trail, not just a backend audit log: something a buyer could actually read.",
           "Built interactive prototypes and ran usability testing across this and the platform's other product lines (multi-tenant e-commerce, fleet management) to validate flows before build.",
         ],
       },
@@ -263,7 +263,7 @@ export const projects: Project[] = [
         paragraphs: [
           [
             {
-              text: "A traceability model built the way the best infrastructure companies approach their own work: sensing conditions in the field, analyzing that data, and surfacing it exactly where a decision — here, a purchase — actually gets made.",
+              text: "A traceability model built the way the best infrastructure companies approach their own work: sensing conditions in the field, analyzing that data, and surfacing it exactly where a decision, here a purchase, actually gets made.",
             },
           ],
         ],
@@ -287,13 +287,13 @@ export const projects: Project[] = [
   {
     slug: "fixa",
     domain: "Workforce",
-    cardTitle: "Fixa — Blue-Collar HR Platform",
+    cardTitle: "Fixa: Blue-Collar HR Platform",
     cardDescription:
       "Africa's first HR platform built for blue-collar workforce management, from field app to analytics portal.",
-    title: "Fixa — Blue-Collar HR Platform",
-    eyebrow: "Workforce — Fixa",
+    title: "Fixa: Blue-Collar HR Platform",
+    eyebrow: "Workforce · Fixa",
     heading: "Africa's first HR platform built for blue-collar workforce management",
-    lede: "An on-site mobile app, an admin portal, a client-facing portal, and automated email reporting — four surfaces built from market research through to a scalable, deployed product.",
+    lede: "An on-site mobile app, an admin portal, a client-facing portal, and automated email reporting: four surfaces built from market research through to a scalable, deployed product.",
     meta: [
       { label: "Role", value: "Product Owner (Contract)" },
       { label: "Company", value: "Fixa" },
@@ -307,7 +307,7 @@ export const projects: Project[] = [
         paragraphs: [
           [
             {
-              text: "Blue-collar workforce management is underserved by HR software built around office workers and desk logins. Fixa set out to build for the field instead — workers who need something usable on-site, and organizations that need visibility across all of them at once.",
+              text: "Blue-collar workforce management is underserved by HR software built around office workers and desk logins. Fixa set out to build for the field instead: workers who need something usable on-site, and organizations that need visibility across all of them at once.",
             },
           ],
         ],
@@ -318,7 +318,7 @@ export const projects: Project[] = [
         paragraphs: [
           [
             {
-              text: "Ideated, designed, and delivered four connected surfaces. An on-site mobile app for field supervisors — switching between active projects, marking attendance by shift and trade, and getting notified as submissions move through approval. An admin portal for Fixa's own operations team — a searchable worker directory, and individual worker profiles carrying certificates, day rates, and a performance scorecard across reliability, KYC, technical skill, and flexibility. A separate client portal for the contracting companies themselves — reviewing and approving submitted shift attendance by trade, and tracking billing, invoices, and tax (EBM) certificates. And automated daily email reports summarizing workforce activity per project, for stakeholders who need the numbers without logging into anything — including usage of the USSD channel workers without smartphones rely on to check their earnings. I owned the roadmap end-to-end, from market research and user interviews through to a scalable, deployed product across all four surfaces.",
+              text: "Ideated, designed, and delivered four connected surfaces. An on-site mobile app for field supervisors: switching between active projects, marking attendance by shift and trade, and getting notified as submissions move through approval. An admin portal for Fixa's own operations team: a searchable worker directory, and individual worker profiles carrying certificates, day rates, and a performance scorecard across reliability, KYC, technical skill, and flexibility. A separate client portal for the contracting companies themselves: reviewing and approving submitted shift attendance by trade, and tracking billing, invoices, and tax (EBM) certificates. And automated daily email reports summarizing workforce activity per project, for stakeholders who need the numbers without logging into anything, including usage of the USSD channel workers without smartphones rely on to check their earnings. I owned the roadmap end-to-end, from market research and user interviews through to a scalable, deployed product across all four surfaces.",
             },
           ],
         ],
@@ -338,7 +338,7 @@ export const projects: Project[] = [
         paragraphs: [
           [
             {
-              text: "A shipped, four-surface product — the same field-capture-to-oversight shape that shows up across most of this work, extended one step further: something happens on the ground, the people responsible for the system see it in their portal, and the people who just need the numbers get them by email without asking.",
+              text: "A shipped, four-surface product. It's the same field-capture-to-oversight shape that shows up across most of this work, extended one step further: something happens on the ground, the people responsible for the system see it in their portal, and the people who just need the numbers get them by email without asking.",
             },
           ],
         ],
@@ -351,7 +351,7 @@ export const projects: Project[] = [
             src: "/work/fixa/app-home.png",
             width: 1290,
             height: 3555,
-            title: "Mobile app — Home",
+            title: "Mobile app: Home",
             description:
               "Supervisor view across multiple active projects, with attendance-approval notifications and worker search.",
           },
@@ -359,63 +359,63 @@ export const projects: Project[] = [
             src: "/work/fixa/app-home-single-project.png",
             width: 1290,
             height: 2700,
-            title: "Mobile app — Single project",
+            title: "Mobile app: Single project",
             description: "Home screen for a user assigned to one project, showing an attendance-updates feed.",
           },
           {
             src: "/work/fixa/app-attendance.png",
             width: 1290,
             height: 2700,
-            title: "Mobile app — Attendance",
+            title: "Mobile app: Attendance",
             description: "Marking attendance on-site by shift and trade, with a running headcount.",
           },
           {
             src: "/work/fixa/admin-workforce.png",
             width: 3120,
             height: 2534,
-            title: "Admin portal — Workforce",
+            title: "Admin portal: Workforce",
             description: "Directory of every worker with status, trade, project, and daily earnings.",
           },
           {
             src: "/work/fixa/admin-worker-profile.png",
             width: 3120,
             height: 2064,
-            title: "Admin portal — Worker profile",
+            title: "Admin portal: Worker profile",
             description: "Individual worker record with trades, day rates, ratings, and certificates.",
           },
           {
             src: "/work/fixa/admin-worker-scores.png",
             width: 3120,
             height: 1800,
-            title: "Admin portal — Worker scores",
+            title: "Admin portal: Worker scores",
             description: "Performance scorecard across flexibility, reliability, KYC, technical skill, and multi-skilling.",
           },
           {
             src: "/work/fixa/client-attendance.png",
             width: 3120,
             height: 2098,
-            title: "Client portal — Attendance",
+            title: "Client portal: Attendance",
             description: "Contracting company reviewing and approving submitted shift attendance by trade.",
           },
           {
             src: "/work/fixa/client-billing.png",
             width: 3120,
             height: 2204,
-            title: "Client portal — Billing",
+            title: "Client portal: Billing",
             description: "Invoices, payment status, and linked tax (EBM) certificates for the client.",
           },
           {
             src: "/work/fixa/email-report.png",
             width: 3092,
             height: 4494,
-            title: "Email reporting — Charts",
+            title: "Email reporting: Charts",
             description: "Automated daily digest with per-project charts on shifts, salaries, and USSD usage.",
           },
           {
             src: "/work/fixa/email-report-simple.png",
             width: 3092,
             height: 5426,
-            title: "Email reporting — Summary",
+            title: "Email reporting: Summary",
             description: "Plain-text variant of the daily digest, sent automatically per active project.",
           },
         ],
@@ -433,9 +433,9 @@ export const projects: Project[] = [
     cardDescription:
       "The national platform connecting startups, investors, and ecosystem partners.",
     title: "Innovate Rwanda",
-    eyebrow: "Government · Ecosystem — Techclick",
+    eyebrow: "Government · Ecosystem · Techclick",
     heading: "The national platform connecting Rwanda's startup ecosystem",
-    lede: "Innovate Rwanda links startups, investors, and ecosystem partners on one platform — with the admin and analytics dashboards that turn that activity into something the ecosystem's stewards can act on.",
+    lede: "Innovate Rwanda links startups, investors, and ecosystem partners on one platform, with the admin and analytics dashboards that turn that activity into something the ecosystem's stewards can act on.",
     meta: [
       { label: "Role", value: "Product Lead (Contract)" },
       { label: "Company", value: "Techclick" },
@@ -449,7 +449,7 @@ export const projects: Project[] = [
         paragraphs: [
           [
             {
-              text: "Innovate Rwanda is a government and development-sector platform meant to connect three groups with different needs — startups looking for capital and visibility, investors looking for credible pipeline, and ecosystem partners coordinating programs across all of it.",
+              text: "Innovate Rwanda is a government and development-sector platform meant to connect three groups with different needs: startups looking for capital and visibility, investors looking for credible pipeline, and ecosystem partners coordinating programs across all of it.",
             },
           ],
         ],
@@ -460,7 +460,7 @@ export const projects: Project[] = [
         paragraphs: [
           [
             {
-              text: "Led design across the platform end-to-end, plus the accompanying admin and analytics dashboards — turning ecosystem and operational data into clear, actionable views for the internal stakeholders running the programs. Also created tailor-made web experiences to attract and engage users, aligning the design with stakeholder business goals rather than a generic directory format.",
+              text: "Led design across the platform end-to-end, plus the accompanying admin and analytics dashboards, turning ecosystem and operational data into clear, actionable views for the internal stakeholders running the programs. Also created tailor-made web experiences to attract and engage users, aligning the design with stakeholder business goals rather than a generic directory format.",
             },
           ],
         ],
@@ -470,7 +470,7 @@ export const projects: Project[] = [
         heading: "Process",
         items: [
           "Designed for three distinct user types on one platform without collapsing them into a single generic experience.",
-          "Built the ecosystem-facing dashboards around the questions program stewards actually needed answered — who's active, where the gaps are, what's moving.",
+          "Built the ecosystem-facing dashboards around the questions program stewards actually needed answered: who's active, where the gaps are, what's moving.",
           "Worked directly with government and development-sector stakeholders to keep the platform aligned with real program goals, not just feature requests.",
         ],
       },
@@ -508,7 +508,7 @@ export const projects: Project[] = [
     cardDescription:
       "Connecting government agencies, development partners, and civil-society experts.",
     title: "RCI Experts Directory",
-    eyebrow: "Government · Development — Techclick",
+    eyebrow: "Government · Development · Techclick",
     heading: "Connecting government agencies with the experts who advise them",
     lede: "The Rwanda Cooperation Initiative's Experts Directory links government agencies, development partners, and civil-society experts on one platform.",
     meta: [
@@ -524,7 +524,7 @@ export const projects: Project[] = [
         paragraphs: [
           [
             {
-              text: "Development cooperation runs on knowing who the right expert is for a given agency's problem. The Rwanda Cooperation Initiative needed a directory that made that matching process visible and manageable — for government agencies, development partners, and the civil-society experts themselves.",
+              text: "Development cooperation runs on knowing who the right expert is for a given agency's problem. The Rwanda Cooperation Initiative needed a directory that made that matching process visible and manageable across government agencies, development partners, and the civil-society experts themselves.",
             },
           ],
         ],
@@ -535,7 +535,7 @@ export const projects: Project[] = [
         paragraphs: [
           [
             {
-              text: "Design across the platform, alongside the admin and analytics dashboards that turn operational and ecosystem data into clear, actionable views for internal stakeholders — the same dashboard-and-directory pairing as the Innovate Rwanda work, applied to a development-cooperation context instead of a startup ecosystem.",
+              text: "Design across the platform, alongside the admin and analytics dashboards that turn operational and ecosystem data into clear, actionable views for internal stakeholders: the same dashboard-and-directory pairing as the Innovate Rwanda work, applied to a development-cooperation context instead of a startup ecosystem.",
             },
           ],
         ],
@@ -546,7 +546,7 @@ export const projects: Project[] = [
         items: [
           "Designed the directory around how agencies actually search for expertise, not just an alphabetical listing.",
           "Built dashboards giving program stakeholders a working view of expert engagement across agencies and partners.",
-          "Aligned the experience with stakeholder business goals across a genuinely cross-organizational group — government, development partners, and independent experts.",
+          "Aligned the experience with stakeholder business goals across a genuinely cross-organizational group: government, development partners, and independent experts.",
         ],
       },
       {

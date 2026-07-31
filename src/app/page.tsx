@@ -14,7 +14,7 @@ const SIGNAL_ITEMS = [
 const STRENGTHS = [
   {
     label: "Process",
-    text: "End-to-end ownership — research, flows, systems, prototypes, and the handoff that makes it ship.",
+    text: "End-to-end ownership: research, flows, systems, prototypes, and the handoff that makes it ship.",
   },
   {
     label: "Data-heavy UI",
@@ -59,8 +59,8 @@ export default function Home() {
         <h1>Design for the infrastructure people actually depend on.</h1>
         <p className="lede">
           Nine years designing the government, health, agriculture, and enterprise
-          platforms that sit underneath everyday life for millions of people — mostly
-          across Rwanda, mostly the kind of data-heavy, high-stakes systems that don&apos;t
+          platforms that sit underneath everyday life for millions of people, mostly
+          across Rwanda and mostly the kind of data-heavy, high-stakes systems that don&apos;t
           get to be wrong.
         </p>
         <div className="hero-meta">
@@ -77,7 +77,7 @@ export default function Home() {
           <div className="section-head">
             <h2>Selected work</h2>
             <p className="section-note">
-              Organized by the system, not the calendar — each one turns something
+              Organized by the system, not the calendar: each one turns something
               operational into something legible.
             </p>
           </div>
@@ -104,16 +104,16 @@ export default function Home() {
           <div className="about-copy">
             <p>
               I design the interfaces that sit on top of complicated, real-world
-              operations — government services, clinical workflows, export supply
-              chains, field workforces — and make them usable by the people who depend
-              on them, often people coming online for the first time.
+              operations, from government services and clinical workflows to export
+              supply chains and field workforces, making them usable by the people who
+              depend on them, often people coming online for the first time.
             </p>
             <p>
               At Irembo, Rwanda&apos;s national digital public services company, I lead
               end-to-end product design across IremboGov and TeleClinic. Before that,
               I&apos;ve owned design across enterprise data platforms, agriculture
               traceability systems, fleet management, and HR tooling for blue-collar
-              workforces — and grown and led design teams along the way.
+              workforces, growing and leading design teams along the way.
             </p>
           </div>
 
