@@ -252,10 +252,46 @@ export const projects: Project[] = [
       },
       {
         kind: "visuals",
-        heading: "Visuals",
+        heading: "Admin platform",
         items: [
-          "Image loading error: Experts Directory search/listing",
-          "Image loading error: engagement analytics dashboard",
+          {
+            src: "/work/rci-experts/admin-directory.png",
+            alt: "Experts directory — searchable list with verification status, gender breakdown, and per-expert project counts",
+          },
+          {
+            src: "/work/rci-experts/admin-profile.png",
+            alt: "Individual expert profile — education, certifications, publications, and professional experience, with verify and block actions",
+          },
+          {
+            src: "/work/rci-experts/admin-ranking.png",
+            alt: "Expert ranking for an opportunity — weighted criteria across academic credentials, technical competence, and domain knowledge",
+          },
+          {
+            src: "/work/rci-experts/admin-analytics.png",
+            alt: "Analytics and reports — experts by field, profile approvals, engagement, and platform-wide trends",
+          },
+        ],
+      },
+      {
+        kind: "visuals",
+        heading: "Expert & client experience",
+        items: [
+          {
+            src: "/work/rci-experts/expert-opportunity.png",
+            alt: "An expert's own accepted opportunity — eligibility criteria, required skills, and submission documents",
+          },
+          {
+            src: "/work/rci-experts/expert-profile.png",
+            alt: "An expert's own profile — specialized skills, publications, and professional experience, pending admin verification",
+          },
+          {
+            src: "/work/rci-experts/client-profile.png",
+            alt: "A client organization's profile — MINIFRA's opportunity and expert-engagement totals, with areas of interest",
+          },
+          {
+            src: "/work/rci-experts/expert-onboarding.png",
+            alt: "Expert onboarding — a guided, step-by-step profile setup from education to attachments",
+          },
         ],
       },
     ],
