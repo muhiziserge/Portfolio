@@ -1,9 +1,23 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useSyncExternalStore } from "react";
+import { createPortal } from "react-dom";
 import Image from "next/image";
 import type { CSSProperties, MouseEvent } from "react";
 import type { QuiltImage } from "@/lib/projects";
+
+const noopSubscribe = () => () => {};
+
+// The tooltip portals into document.body, which doesn't exist during
+// SSR — this resolves to false on the server and true once hydrated,
+// without the extra render pass a mount-effect would cause.
+function useHydrated() {
+  return useSyncExternalStore(
+    noopSubscribe,
+    () => true,
+    () => false,
+  );
+}
 
 // Matches the grid's own sizing (globals.css): a column is COLUMN_PX
 // wide, rows advance in ROW_PX increments. Spans are derived from each
@@ -27,10 +41,12 @@ function rowSpanFor(ratio: number, colSpan: 1 | 2) {
 }
 
 interface Pointer {
+  // Viewport-relative (clientX/clientY) — matches the tooltip's own
+  // position: fixed coordinate space once it's portaled to <body>.
   x: number;
   y: number;
-  w: number;
-  h: number;
+  viewportWidth: number;
+  viewportHeight: number;
 }
 
 function QuiltItem({ image }: { image: QuiltImage }) {
@@ -52,21 +68,32 @@ function QuiltItem({ image }: { image: QuiltImage }) {
 
   const [pointer, setPointer] = useState<Pointer | null>(null);
   const [visible, setVisible] = useState(false);
+  const hydrated = useHydrated();
 
-  function handleMouseMove(e: MouseEvent<HTMLDivElement>) {
-    const rect = e.currentTarget.getBoundingClientRect();
-    setPointer({ x: e.clientX - rect.left, y: e.clientY - rect.top, w: rect.width, h: rect.height });
+  function trackPointer(e: MouseEvent<HTMLDivElement>) {
+    setPointer({
+      x: e.clientX,
+      y: e.clientY,
+      viewportWidth: window.innerWidth,
+      viewportHeight: window.innerHeight,
+    });
   }
 
   // Flip the tooltip to whichever side of the cursor has room, so it
-  // never runs past the tile's own edge.
+  // never runs past the viewport edge.
   const tooltipStyle: CSSProperties = pointer
     ? {
         left: pointer.x,
         top: pointer.y,
         transform: `translate(${
-          pointer.x > pointer.w / 2 ? `calc(-100% - ${TOOLTIP_OFFSET_PX}px)` : `${TOOLTIP_OFFSET_PX}px`
-        }, ${pointer.y > pointer.h / 2 ? `calc(-100% - ${TOOLTIP_OFFSET_PX}px)` : `${TOOLTIP_OFFSET_PX}px`})`,
+          pointer.x > pointer.viewportWidth / 2
+            ? `calc(-100% - ${TOOLTIP_OFFSET_PX}px)`
+            : `${TOOLTIP_OFFSET_PX}px`
+        }, ${
+          pointer.y > pointer.viewportHeight / 2
+            ? `calc(-100% - ${TOOLTIP_OFFSET_PX}px)`
+            : `${TOOLTIP_OFFSET_PX}px`
+        })`,
       }
     : { left: 0, top: 0, transform: `translate(${TOOLTIP_OFFSET_PX}px, ${TOOLTIP_OFFSET_PX}px)` };
 
@@ -75,8 +102,11 @@ function QuiltItem({ image }: { image: QuiltImage }) {
       className={`quilt-item${isWide ? " wide" : ""}`}
       tabIndex={0}
       style={gridStyle}
-      onMouseMove={handleMouseMove}
-      onMouseEnter={() => setVisible(true)}
+      onMouseMove={trackPointer}
+      onMouseEnter={(e) => {
+        trackPointer(e);
+        setVisible(true);
+      }}
       onMouseLeave={() => setVisible(false)}
       onFocus={() => setVisible(true)}
       onBlur={() => setVisible(false)}
@@ -88,10 +118,14 @@ function QuiltItem({ image }: { image: QuiltImage }) {
         alt={image.title}
         sizes="(max-width: 720px) 100vw, 560px"
       />
-      <div className={`quilt-tooltip${visible ? " visible" : ""}`} style={tooltipStyle}>
-        <h3>{image.title}</h3>
-        <p>{image.description}</p>
-      </div>
+      {hydrated &&
+        createPortal(
+          <div className={`quilt-tooltip${visible ? " visible" : ""}`} style={tooltipStyle}>
+            <h3>{image.title}</h3>
+            <p>{image.description}</p>
+          </div>,
+          document.body,
+        )}
     </div>
   );
 }
