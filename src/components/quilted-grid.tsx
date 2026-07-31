@@ -1,23 +1,9 @@
 "use client";
 
-import { useState, useSyncExternalStore } from "react";
-import { createPortal } from "react-dom";
 import Image from "next/image";
-import type { CSSProperties, MouseEvent } from "react";
+import type { CSSProperties } from "react";
 import type { QuiltImage } from "@/lib/projects";
-
-const noopSubscribe = () => () => {};
-
-// The tooltip portals into document.body, which doesn't exist during
-// SSR — this resolves to false on the server and true once hydrated,
-// without the extra render pass a mount-effect would cause.
-function useHydrated() {
-  return useSyncExternalStore(
-    noopSubscribe,
-    () => true,
-    () => false,
-  );
-}
+import { usePointerTooltip } from "@/hooks/use-pointer-tooltip";
 
 // Matches the grid's own sizing (globals.css): a column is COLUMN_PX
 // wide, rows advance in ROW_PX increments. Spans are derived from each
@@ -29,7 +15,6 @@ const GAP_PX = 12;
 const ROW_PX = 8;
 const WIDE_RATIO = 1.1;
 const MIN_ROW_SPAN = 6;
-const TOOLTIP_OFFSET_PX = 14;
 
 // A span of N row-tracks renders as N*ROW_PX + (N-1)*GAP_PX tall — the
 // grid's row gap compounds across every internal track boundary, not
@@ -38,15 +23,6 @@ function rowSpanFor(ratio: number, colSpan: 1 | 2) {
   const cellWidth = colSpan * COLUMN_PX + (colSpan - 1) * GAP_PX;
   const desiredHeight = cellWidth / ratio;
   return Math.max(MIN_ROW_SPAN, Math.round((desiredHeight + GAP_PX) / (ROW_PX + GAP_PX)));
-}
-
-interface Pointer {
-  // Viewport-relative (clientX/clientY) — matches the tooltip's own
-  // position: fixed coordinate space once it's portaled to <body>.
-  x: number;
-  y: number;
-  viewportWidth: number;
-  viewportHeight: number;
 }
 
 function QuiltItem({ image }: { image: QuiltImage }) {
@@ -66,51 +42,10 @@ function QuiltItem({ image }: { image: QuiltImage }) {
       } as CSSProperties)
     : { gridRow: `span ${rowSpanNarrow}` };
 
-  const [pointer, setPointer] = useState<Pointer | null>(null);
-  const [visible, setVisible] = useState(false);
-  const hydrated = useHydrated();
-
-  function trackPointer(e: MouseEvent<HTMLDivElement>) {
-    setPointer({
-      x: e.clientX,
-      y: e.clientY,
-      viewportWidth: window.innerWidth,
-      viewportHeight: window.innerHeight,
-    });
-  }
-
-  // Flip the tooltip to whichever side of the cursor has room, so it
-  // never runs past the viewport edge.
-  const tooltipStyle: CSSProperties = pointer
-    ? {
-        left: pointer.x,
-        top: pointer.y,
-        transform: `translate(${
-          pointer.x > pointer.viewportWidth / 2
-            ? `calc(-100% - ${TOOLTIP_OFFSET_PX}px)`
-            : `${TOOLTIP_OFFSET_PX}px`
-        }, ${
-          pointer.y > pointer.viewportHeight / 2
-            ? `calc(-100% - ${TOOLTIP_OFFSET_PX}px)`
-            : `${TOOLTIP_OFFSET_PX}px`
-        })`,
-      }
-    : { left: 0, top: 0, transform: `translate(${TOOLTIP_OFFSET_PX}px, ${TOOLTIP_OFFSET_PX}px)` };
+  const { bind, renderTooltip } = usePointerTooltip();
 
   return (
-    <div
-      className={`quilt-item${isWide ? " wide" : ""}`}
-      tabIndex={0}
-      style={gridStyle}
-      onMouseMove={trackPointer}
-      onMouseEnter={(e) => {
-        trackPointer(e);
-        setVisible(true);
-      }}
-      onMouseLeave={() => setVisible(false)}
-      onFocus={() => setVisible(true)}
-      onBlur={() => setVisible(false)}
-    >
+    <div className={`quilt-item${isWide ? " wide" : ""}`} style={gridStyle} {...bind}>
       <Image
         src={image.src}
         width={image.width}
@@ -118,14 +53,12 @@ function QuiltItem({ image }: { image: QuiltImage }) {
         alt={image.title}
         sizes="(max-width: 720px) 100vw, 560px"
       />
-      {hydrated &&
-        createPortal(
-          <div className={`quilt-tooltip${visible ? " visible" : ""}`} style={tooltipStyle}>
-            <h3>{image.title}</h3>
-            <p>{image.description}</p>
-          </div>,
-          document.body,
-        )}
+      {renderTooltip(
+        <>
+          <h3>{image.title}</h3>
+          <p>{image.description}</p>
+        </>,
+      )}
     </div>
   );
 }
