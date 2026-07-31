@@ -6,10 +6,18 @@ export interface Run {
 
 export type Paragraph = Run[];
 
+export interface GalleryImage {
+  src: string;
+  width: number;
+  height: number;
+  alt: string;
+}
+
 export type Block =
   | { kind: "prose"; heading: string; paragraphs: Paragraph[] }
   | { kind: "list"; heading: string; items: string[] }
-  | { kind: "visuals"; heading: string; items: string[] };
+  | { kind: "visuals"; heading: string; items: string[] }
+  | { kind: "gallery"; heading: string; primary: GalleryImage; carousel?: GalleryImage[] };
 
 export interface MetaField {
   label: string;
@@ -284,12 +292,12 @@ export const projects: Project[] = [
     title: "Fixa — Blue-Collar HR Platform",
     eyebrow: "Workforce — Fixa",
     heading: "Africa's first HR platform built for blue-collar workforce management",
-    lede: "An on-site mobile app paired with a web portal for organization-wide performance monitoring — built from market research through to a scalable, deployed product across both surfaces.",
+    lede: "An on-site mobile app, an admin portal, a client-facing portal, and automated email reporting — four surfaces built from market research through to a scalable, deployed product.",
     meta: [
       { label: "Role", value: "Product Owner (Contract)" },
       { label: "Company", value: "Fixa" },
       { label: "Timeline", value: "Oct 2022 – Oct 2023" },
-      { label: "Surfaces", value: "Mobile app, Web portal" },
+      { label: "Surfaces", value: "Mobile app, Admin portal, Client portal, Email reports" },
     ],
     blocks: [
       {
@@ -309,7 +317,7 @@ export const projects: Project[] = [
         paragraphs: [
           [
             {
-              text: "Ideated, designed, and delivered the full product: an on-site mobile app for the workforce itself, and a web portal giving organizations performance monitoring and analytics across their whole team. I owned the roadmap end-to-end — from market research and user interviews through to a scalable, deployed product across both surfaces.",
+              text: "Ideated, designed, and delivered four connected surfaces. An on-site mobile app for field supervisors — switching between active projects, marking attendance by shift and trade, and getting notified as submissions move through approval. An admin portal for Fixa's own operations team — a searchable worker directory, and individual worker profiles carrying certificates, day rates, and a performance scorecard across reliability, KYC, technical skill, and flexibility. A separate client portal for the contracting companies themselves — reviewing and approving submitted shift attendance by trade, and tracking billing, invoices, and tax (EBM) certificates. And automated daily email reports summarizing workforce activity per project, for stakeholders who need the numbers without logging into anything — including usage of the USSD channel workers without smartphones rely on to check their earnings. I owned the roadmap end-to-end, from market research and user interviews through to a scalable, deployed product across all four surfaces.",
             },
           ],
         ],
@@ -319,8 +327,8 @@ export const projects: Project[] = [
         heading: "Process",
         items: [
           "Ran market research and user interviews with blue-collar workers directly, rather than assuming office-HR patterns would transfer.",
-          "Split the problem cleanly in two: a fast, low-friction on-site app for individual workers, and a separate analytics portal for organizational oversight.",
-          "Designed the data model connecting field-level activity to portal-level reporting, so performance data captured on-site became legible at the organization level without extra manual work.",
+          "Split the problem across distinct interfaces for distinct roles: a fast, low-friction on-site app for field workers, an admin portal for Fixa's own operations team, a client portal for the contracting companies, and email digests for stakeholders who just need the numbers.",
+          "Designed the data model connecting field-level activity to portal-level reporting, so performance data captured on-site became legible at the organization and client level without extra manual work.",
         ],
       },
       {
@@ -329,17 +337,93 @@ export const projects: Project[] = [
         paragraphs: [
           [
             {
-              text: "A shipped, two-surface product — the same field-capture-to-oversight-dashboard shape that shows up across most of this work: something happens on the ground, and someone responsible for the whole system needs to see it clearly.",
+              text: "A shipped, four-surface product — the same field-capture-to-oversight shape that shows up across most of this work, extended one step further: something happens on the ground, the people responsible for the system see it in their portal, and the people who just need the numbers get them by email without asking.",
             },
           ],
         ],
       },
       {
-        kind: "visuals",
-        heading: "Visuals",
-        items: [
-          "Image loading error: on-site mobile app",
-          "Image loading error: performance monitoring & analytics portal",
+        kind: "gallery",
+        heading: "On-site mobile app",
+        primary: {
+          src: "/work/fixa/app-home.png",
+          width: 1314,
+          height: 4155,
+          alt: "Mobile app home for a supervisor managing multiple projects, with attendance-approval notifications and worker search",
+        },
+        carousel: [
+          {
+            src: "/work/fixa/app-home-single-project.png",
+            width: 1314,
+            height: 2802,
+            alt: "Mobile app home for a single-project user, showing an attendance-updates feed with approval status",
+          },
+          {
+            src: "/work/fixa/app-attendance.png",
+            width: 1290,
+            height: 2796,
+            alt: "Marking attendance on-site by shift and trade, with a running headcount",
+          },
+        ],
+      },
+      {
+        kind: "gallery",
+        heading: "Admin portal",
+        primary: {
+          src: "/work/fixa/admin-workforce.png",
+          width: 3096,
+          height: 2380,
+          alt: "Workforce directory listing every worker with status, trade, project, and daily earnings",
+        },
+        carousel: [
+          {
+            src: "/work/fixa/admin-worker-profile.png",
+            width: 3096,
+            height: 2380,
+            alt: "Individual worker profile with trades, day rates, ratings, and certificates",
+          },
+          {
+            src: "/work/fixa/admin-worker-scores.png",
+            width: 3096,
+            height: 2380,
+            alt: "Worker scorecard breaking performance into flexibility, reliability, KYC, technical, and multi-skill scores",
+          },
+        ],
+      },
+      {
+        kind: "gallery",
+        heading: "Client portal",
+        primary: {
+          src: "/work/fixa/client-attendance.png",
+          width: 3024,
+          height: 2356,
+          alt: "Client-facing portal for reviewing and approving submitted shift attendance by trade",
+        },
+        carousel: [
+          {
+            src: "/work/fixa/client-billing.png",
+            width: 3024,
+            height: 2356,
+            alt: "Client billing view listing invoices, payment status, and linked tax (EBM) certificates",
+          },
+        ],
+      },
+      {
+        kind: "gallery",
+        heading: "Automated email reporting",
+        primary: {
+          src: "/work/fixa/email-report.png",
+          width: 3092,
+          height: 6056,
+          alt: "Daily reporting email breaking down active workers, shifts, and USSD usage per project with charts",
+        },
+        carousel: [
+          {
+            src: "/work/fixa/email-report-simple.png",
+            width: 3092,
+            height: 7190,
+            alt: "Plain-text variant of the daily reporting email, sent automatically per active project",
+          },
         ],
       },
     ],
